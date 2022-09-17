@@ -1,0 +1,582 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{cancel}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+
+\title{AP1 de Cálculo I}
+\author{Vinícius Menezes Monte}
+\date{Março de 2022}
+
+\begin{document}
+
+\maketitle
+
+\section*{Questões}
+\subsection*{Calcule, se existir: (4 escores cada)}
+\subsubsection*{1.}
+
+\[
+    lim_{x\to 1} \left(\frac{x^2-1}{x-2}+\frac{x^9-1}{x^3-1}\right)
+\]
+
+\subsubsection*{2.}
+
+\[
+    lim_{x\to 1} \frac{\sqrt[6]{x}-1}{1-\sqrt[5]{x}}
+\]
+
+\subsubsection*{3.}
+
+\[
+    lim_{x\to 5} \frac{|x-5|}{x-5}
+\]
+
+\subsubsection*{4.}
+
+\[
+    lim_{x\to 4^-} \frac{x^2-1}{x^2-7x+12}
+\]
+
+\subsubsection*{5.}
+
+\[
+    lim_{x\to -\infty} \frac{1}{\sqrt{x^2+x}-x}
+\]
+
+\subsubsection*{6. Encontre as assíntotas vertical e horizontal de, se essas existirem, de}
+
+\[
+    f(x) = \frac{x^2+2x-3}{x^2-9}
+\]
+
+
+\section*{Soluções}
+
+\subsubsection*{1.}
+
+\[
+    lim_{x\to 1} \left(\frac{x^2-1}{x-2}+\frac{x^9-1}{x^3-1}\right)
+\]
+
+O limite da soma é a soma dos limites.
+
+\begin{equation} \label{eq_lim_soma}
+    lim_{x\to 1} \left(\frac{x^2-1}{x-2}+\frac{x^9-1}{x^3-1}\right)
+    = \lim_{x\to 1} \frac{x^2-1}{x-2} + \lim_{x\to 1} \frac{x^9-1}{x^3-1}
+\end{equation}
+
+Calculemos primeiro \(\lim_{x\to 1} \frac{x^2-1}{x-2}\). Vamos começar testando \(x_0\).
+
+\[
+    \lim_{x\to 1} \frac{x^2-1}{x-2}
+    = \frac{(1)^2-1}{(1)-2}
+    = \frac{1-1}{1-2}
+    = \frac{0}{-1}
+    = 0
+\]
+
+Ou seja,
+
+\begin{equation} \label{eq_lim_soma_1}
+    \lim_{x\to 1} \frac{x^2-1}{x-2} = 0
+\end{equation}
+
+Calculemos, então \(\lim_{x\to 1} \frac{x^9-1}{x^3-1}\). Vamos começar testando \(x_0\).
+
+\[
+    \lim_{x\to 1} \frac{x^9-1}{x^3-1}
+    = \frac{(1)^9-1}{(1)^3-1}
+    = \frac{1-1}{1-1}
+    = \frac{0}{0} \ (indet.)
+\]
+
+Ao testar \(x_0\) chegamos em uma indeterminação.
+
+Chamemos \(\frac{x^9-1}{x^3-1}\) de \(f\).
+
+Procuremos uma função \(g\) tal que \(\lim_{x\to 1} g\ = \lim_{x\to 1} f\), mas que não nos leve
+a uma indeterminação. Para tanto, vamos manipular a expressão de \(f\).
+
+\begin{multline*}
+    \frac{x^9-1}{x^3-1}
+    = \frac{\cancel{(x-1)}(x^8+x^7+x^6+x^5+x^4+x^3+x^2+x+1)}{\cancel{(x-1)}(x^2+x+1)} \\
+    = \frac{x^8+x^7+x^6+x^5+x^4+x^3+x^2+x+1}{x^2+x+1}
+\end{multline*}
+
+\[
+    g(x) = \frac{x^8+x^7+x^6+x^5+x^4+x^3+x^2+x+1}{x^2+x+1}
+\]
+
+Vamos testar \(x_0\).
+
+\begin{align*}
+    \lim_{x\to 1} f(x)
+     & = \lim_{x\to 1} g(x)                                                  \\
+     & = \frac{(1)^8+(1)^7+(1)^6+(1)^5+(1)^4+(1)^3+(1)^2+(1)+1}{(1)^2+(1)+1} \\
+     & = \frac{1+1+1+1+1+1+1+1+1}{1+1+1}                                     \\
+     & = \frac{9}{3}                                                         \\
+     & = 3
+\end{align*}
+
+\begin{equation} \label{eq_lim_soma_2}
+    \lim_{x\to 1} \frac{x^9-1}{x^3-1} = 3
+\end{equation}
+
+De acordo com as expressões
+\ref{eq_lim_soma}, \ref{eq_lim_soma_1} e \ref{eq_lim_soma_2}
+podemos concluir que
+
+\[
+    lim_{x\to 1} \left(\frac{x^2-1}{x-2}+\frac{x^9-1}{x^3-1}\right)
+    = \lim_{x\to 1} \frac{x^2-1}{x-2} + \lim_{x\to 1} \frac{x^9-1}{x^3-1}
+    = 0 + 3
+    = 3
+\]
+
+Ou seja,
+
+\[
+    lim_{x\to 1} \frac{x^2-1}{x-2}+\frac{x^9-1}{x^3-1}
+    = 3
+\]
+
+\subsubsection*{2.}
+
+\[
+    lim_{x\to 1} \frac{\sqrt[6]{x}-1}{1-\sqrt[5]{x}}
+\]
+
+Vamos começar testando \(x_0\).
+
+\[
+    lim_{x\to 1} \frac{\sqrt[6]{x}-1}{1-\sqrt[5]{x}}
+    = \frac{\sqrt[6]{1}-1}{1-\sqrt[5]{1}}
+    = \frac{1-1}{1-1}
+    = \frac{0}{0} \ (indet.)
+\]
+
+Ao testar \(x_0\) chegamos em uma indeterminação.
+
+Chamemos \(\frac{\sqrt[6]{x}-1}{1-\sqrt[5]{x}}\) de \(f(x)\).
+
+Procuremos uma função \(g\) tal que \(\lim_{x\to 1} g\ = \lim_{x\to 1} f\), mas que não nos leve
+a uma indeterminação. Para tanto, vamos manipular a expressão de \(f\).
+
+Façamos \(x = y^{30}\). Perceba que se \(x=1 \implies y=1\).
+
+\begin{align*}
+    \frac{\sqrt[6]{x}-1}{1-\sqrt[5]{x}}
+     & = \frac{\sqrt[6]{y^{30}}-1}{1-\sqrt[5]{y^{30}}}                           \\
+     & = \frac{y^5-1}{1-y^6}                                                     \\
+     & = \frac{(y-1)(y^4+y^3+y^2+y+1)}{(1^3)^2-(y^3)^2}                          \\
+     & = \frac{(y-1)(y^4+y^3+y^2+y+1)}{(1^3+y^3)(1^3-y^3)}                       \\
+     & = \frac{(y-1)(y^4+y^3+y^2+y+1)}{(1+y^3)(1-y^3)}                           \\
+     & = \frac{(y-1)(y^4+y^3+y^2+y+1)}{(1+y^3)(-1)(-1+y^3)}                      \\
+     & = -\frac{(y-1)(y^4+y^3+y^2+y+1)}{(1+y^3)(y^3-1)}                          \\
+     & = -\frac{(y-1)(y^4+y^3+y^2+y+1)}{(y^3+1)(y^3-1)}                          \\
+     & = -\frac{\cancel{(y-1)}(y^4+y^3+y^2+y+1)}{(y^3+1)\cancel{(y-1)}(y^2+y+1)} \\
+     & = -\frac{(y^4+y^3+y^2+y+1)}{(y^3+1)(y^2+y+1)}                             \\
+\end{align*}
+
+\begin{equation}
+    g(x) = -\frac{(y^4+y^3+y^2+y+1)}{(y^3+1)(y^2+y+1)}
+\end{equation}
+
+Vamos testar \(x_0\).
+
+\begin{align*}
+    \lim_{x\to 1} f(x)
+     & = \lim_{x\to 1} g(x)                                        \\
+     & = -\frac{((1)^4+(1)^3+(1)^2+(1)+1)}{((1)^3+1)((1)^2+(1)+1)} \\
+     & = -\frac{(1+1+1+1+1)}{(1+1)(1+1+1)}                         \\
+     & = -\frac{(5)}{(2)(3)}                                       \\
+     & = -\frac{5}{6}                                              \\
+\end{align*}
+
+Ou seja,
+
+\[
+    lim_{x\to 1} \frac{\sqrt[6]{x}-1}{1-\sqrt[5]{x}} = -\frac{5}{6}
+\]
+
+\subsubsection*{3.}
+
+\[
+    lim_{x\to 5} \frac{|x-5|}{x-5}
+\]
+
+Vamos começar testando \(x_0\).
+
+\[
+    lim_{x\to 5} \frac{|x-5|}{x-5}
+    = \frac{|5-5|}{5-5}
+    = \frac{|0|}{0}
+    = \frac{0}{0} \ (indet.)
+\]
+
+Ao testar \(x_0\) chegamos em uma indeterminação.
+
+Afim de estudar a existência e valor desse limite, vamos fazer a análise dos limites laterais.
+
+Antes de tudo, vamos nos recordar a definição de \(|x|\).
+
+\begin{equation} \label{modulus_definition}
+    |x| =
+    \left\{
+    \begin{array}{ll}
+        x  & \mbox{se } x \geq 0 \\
+        -x & \mbox{se } x < 0
+    \end{array}
+    \right.
+\end{equation}
+
+Agora, vamos estudar quando \(x\) se aproxima de \(x_0\) pela esquerda.
+
+\[
+    lim_{x\to 5^-} \frac{|x-5|}{x-5}
+\]
+
+Quando \(x\) se aproxima de \(x_0\) pela esquerda assume valores estritamente
+menores que 5. Portanto, \(x-5\) é um número negativo de módulo muito próximo de zero.
+Nessas condições, pela definição de módulo (expressão \ref{modulus_definition}):
+
+\[
+    |x-5| = -(x-5)
+\]
+
+Com isso, podemos calcular o limite lateral quando \(x\) se aproxima de \(x_0\) pela esquerda.
+
+\[
+    lim_{x\to 5^-} \frac{|x-5|}{x-5} = \frac{-(x-5)}{(x-5)} = -1
+\]
+
+
+\begin{equation} \label{lim_x_to_5_minus}
+    lim_{x\to 5^-} \frac{|x-5|}{x-5} = -1
+\end{equation}
+
+Agora, vamos estudar quando \(x\) se aproxima de \(x_0\) pela direita.
+
+\[
+    lim_{x\to 5^+} \frac{|x-5|}{x-5}
+\]
+
+Quando \(x\) se aproxima de \(x_0\) pela direita assume valores estritamente maiores
+que 5. Portanto, \(x-5\) é um número positivo de módulo muito próximo de zero.
+Nessas condições, pela definição de módulo(expressão \ref{modulus_definition}):
+
+\[
+    |x-5| = x-5
+\]
+
+Com isso, podemos calcular o limite lateral quando \(x\) se aproxima de \(x_0\) pela direita.
+
+\[
+    lim_{x\to 5^+} \frac{|x-5|}{x-5} = \frac{x-5}{x-5} = 1
+\]
+
+\begin{equation}  \label{lim_x_to_5_plus}
+    lim_{x\to 5^+} \frac{|x-5|}{x-5} = 1
+\end{equation}
+
+Observe que, de acordo com \ref{lim_x_to_5_minus} e \ref{lim_x_to_5_plus},
+os limites laterais são diferentes. Logo, \(lim_{x\to 5} \frac{|x-5|}{x-5}\) não existe.
+
+
+\[
+    lim_{x\to 5} \frac{|x-5|}{x-5} \
+    \mbox{não existe, pois} \ lim_{x\to 5^-} \frac{|x-5|}{x-5}
+    \neq
+    lim_{x\to 5^+} \frac{|x-5|}{x-5}
+\]
+
+\subsubsection*{4.}
+
+\[
+    lim_{x\to 4^-} \frac{x^2-1}{x^2-7x+12}
+\]
+
+Vamos começar testando \(x_0\).
+
+
+\[
+    lim_{x\to 4^-} \frac{x^2-1}{x^2-7x+12}
+    = \frac{(4)^2-1}{(4)^2-7(4)+12}
+    = \frac{16-1}{16-28+12}
+    = \frac{15}{0} \ (indet.)
+\]
+
+Ao testar \(x_0\) chegamos em uma indeterminação.
+
+Vamos começar aplicando propriedades dos limites para tornar o problema mais simples.
+
+\begin{align*}
+    lim_{x\to 4^-} \frac{x^2-1}{x^2-7x+12}
+     & = \left(lim_{x\to 4^-} x^2-1\right)
+    \left(lim_{x\to 4^-} \frac{1}{x^2-7x+12}\right)        \\
+     & = \left(4^2-1\right)
+    \left(lim_{x\to 4^-} \frac{1}{x^2-7x+12}\right)        \\
+     & = 15\left(lim_{x\to 4^-} \frac{1}{x^2-7x+12}\right) \\
+\end{align*}
+
+\begin{equation} \label{eq:lim_x_to_4_exp_with_15}
+    lim_{x\to 4^-} \frac{x^2-1}{x^2-7x+12} = 15\left(lim_{x\to 4^-} \frac{1}{x^2-7x+12}\right)  \\
+\end{equation}
+
+Analisemos a expressão \(x^2-7x+12\) com mais cuidado.
+
+Se trata de uma função do segundo grau, cujo gráfico é
+uma parábola com a concavidade para cima e uma de suas raízes é \(x'=4\).
+Obtenhamos a segunda raiz da equação do segundo grau.
+
+Chamemos a segunda raiz de \(x''\)
+
+Como a soma das raizes de uma função quadrática é igual a \(\frac{-b}{a}\), temos que
+
+\begin{align*}
+    x' + x''    & = \frac{-b}{a}      \\
+    4 + x''     & = \frac{-(-7)}{(1)} \\
+    4 + x''     & = 7                 \\
+    4 - 4 + x'' & = 7 - 4             \\
+    0 + x''     & = 3                 \\
+    x''         & = 3                 \\
+\end{align*}
+
+Agora podemos desenhar o gráfico de \(f(x) = x^2-7x+12\).
+
+\begin{tikzpicture}
+    \begin{axis}[
+            axis x line = center,
+            axis y line = center,
+            xtick={-5,-4,...,5},
+            ytick={-5,-4,...,5},
+            xlabel style={below right},
+            ylabel style={above left},
+            xlabel = \(x\),
+            ylabel = {\(f(x)\)},
+            xmin=-1.5,
+            % xmax=5.5,
+            ymin=-1.5,
+            ymax=5.5,
+        ]
+        %Below the red parabola is defined
+        \addplot [
+            domain=1:5,
+            % samples=100,
+            color=red,
+        ]
+        {x^2 - 7*x + 12};
+        \addlegendentry{\(x^2 - 7x + 12\)}
+
+    \end{axis}
+\end{tikzpicture}
+
+Observamos que os valores à direita de \(x = 3\) e à esquerda de \(x = 4\) são negativos.
+Ou seja, os valores na vizinhança de \(lim_{x\to 4^-} x^2-7x+12 = 0\) à esquerda de \(x = 4\) são negativos.
+
+Desse modo, temos que em \(g(x) = \frac{1}{x^2-7x+12}\), os valores na vizinhança associada a \(lim_{x\to 4^-} \frac{1}{x^2-7x+12}\)
+e à esquerda de \(x = 4\) são resultados de divisões do número \(1\) por números negativos de módulo muito próximo a zero. Além disso, \(x = 4\) é
+assíntota vertical de \(g(x) = \frac{1}{x^2-7x+12}\).
+
+Nessas condições, temos condições de afirmar o seguinte limite:
+
+\begin{equation} \label{eq:4:negative_infinity}
+    lim_{x\to 4^-} \frac{1}{x^2-7x+12} = -\infty
+\end{equation}
+
+Agora, com base nas expressões \ref{eq:lim_x_to_4_exp_with_15} e \ref{eq:4:negative_infinity} temos que:
+
+
+\begin{align*}
+    lim_{x\to 4^-} \frac{x^2-1}{x^2-7x+12}
+     & = 15\left(lim_{x\to 4^-} \frac{1}{x^2-7x+12}\right) \\
+     & = 15(-\infty)                                       \\
+     & = -\infty
+\end{align*}
+
+A solução, portanto, é:
+
+\begin{equation*}
+    lim_{x\to 4^-} \frac{x^2-1}{x^2-7x+12} = -\infty
+\end{equation*}
+
+\subsubsection*{5.}
+
+\[
+    lim_{x\to -\infty} \frac{1}{\sqrt{x^2+x}-x}
+\]
+
+
+\begin{align*}
+    lim_{x\to -\infty} \frac{1}{\sqrt{x^2+x}-x}
+     & = lim_{x\to -\infty} \left(\frac{1}{\sqrt{x^2+x}-x} \cdot \frac{\sqrt{x^2+x}+x}{\sqrt{x^2+x}+x} \right) \\
+     & = lim_{x\to -\infty} \frac{\sqrt{x^2+x}+x}{(\sqrt{x^2+x}-x) \cdot (\sqrt{x^2+x}+x)}                     \\
+     & = lim_{x\to -\infty} \frac{\sqrt{x^2+x}+x}{x^2+x-x^2}                                                   \\
+     & = lim_{x\to -\infty} \frac{\sqrt{x^2+x}+x}{x}                                                           \\
+     & = lim_{x\to -\infty} \frac{\sqrt{x^2(1+\frac{1}{x})} + x}{x}                                            \\
+     & = lim_{x\to -\infty} \frac{|x|\sqrt{1+\frac{1}{x}} + x}{x}                                              \\
+\end{align*}
+
+Como \(x\) é negativo, \(|x| = - x\)
+
+\begin{align*}
+    lim_{x\to -\infty} \frac{1}{\sqrt{x^2+x}-x}
+     & = lim_{x\to -\infty} \frac{|x|\sqrt{1+\frac{1}{x}} + x}{x}                      \\
+     & = lim_{x\to -\infty} \frac{(-x)\sqrt{1+\frac{1}{x}} + x}{x}                     \\
+     & = lim_{x\to -\infty} \frac{(-x)\sqrt{1+\frac{1}{x}} - (-x)}{x}                  \\
+     & = lim_{x\to -\infty} \frac{(-x)\left(\sqrt{1+\frac{1}{x}} - 1\right)}{x}        \\
+     & = lim_{x\to -\infty} -\left(\sqrt{1+\frac{1}{x}} - 1\right)                     \\
+     & = - lim_{x\to -\infty} \left(\sqrt{1+\frac{1}{x}} - 1\right)                    \\
+     & = - \left(lim_{x\to -\infty} \sqrt{1+\frac{1}{x}} - lim_{x\to -\infty} 1\right) \\
+     & = - \left(lim_{x\to -\infty} \sqrt{1+\frac{1}{x}} - 1\right)                    \\
+     & = - \left( \sqrt{lim_{x\to -\infty}\left(1+\frac{1}{x}\right)} - 1\right)       \\
+     & = - \left( \sqrt{\left(lim_{x\to -\infty} 1+ lim_{x\to -\infty} \frac{1}{x}\right)} - 1\right)       \\
+     & = - ( \sqrt{1 + 0} - 1)       \\
+     & = - ( \sqrt{1} - 1)       \\
+     & = - ( 1 - 1)       \\
+     & = - ( 0)       \\
+     & = 0       \\
+\end{align*}
+
+Ou seja,
+
+\[
+    lim_{x\to -\infty} \frac{1}{\sqrt{x^2+x}-x} = 0
+\]
+
+
+
+% Vamos começar testando \(x_0\).
+
+% \begin{align*}
+%     lim_{x\to -\infty} \frac{1}{\sqrt{x^2+x}-x}
+%     &= \frac{1}{\sqrt{(-\infty)^2+(-\infty)}-(-\infty)} \\
+%     &= \frac{1}{\sqrt{\infty-\infty}+\infty} \\
+% \end{align*}
+
+% Perceba que na expressão surge a indeterminação \(\infty - \infty\).
+% Ao testar \(x_0\) chegamos em uma indeterminação. Vamos aplicar propriedades de limites para tentar escapar da indeterminação.
+
+% \begin{align*}
+%     lim_{x\to -\infty} \frac{1}{\sqrt{x^2+x}-x} 
+%     &=  \frac{lim_{x\to -\infty} 1}{lim_{x\to -\infty} (\sqrt{x^2+x}-x)} \\
+%     &=  \frac{1}{lim_{x\to -\infty} (\sqrt{x^2+x}-x)}  \\
+%     &=  \frac{1}{lim_{x\to -\infty} (\sqrt{x^2+x}) - (lim_{x\to -\infty} x)}  \\
+%     &=  \frac{1}{lim_{x\to -\infty} \sqrt{x^2+x} -  (-\infty) }  \\
+%     &=  \frac{1}{\sqrt{lim_{x\to -\infty} (x^2+x)} - (-\infty) }  \\
+% \end{align*}
+
+% Para continuar o cálculo do limite, utilizaremos a seguinte propriedade:
+% \begin{multline}
+%     lim_{x\to \pm\infty} (a_x x^n + a_{x-1} x^{n-1} + a_{x-2} n^{x-2} 
+%     + a_{x-3} n^{x-3} +
+%     \cdots + \\
+%     a_2 x^2 + a_1 x + a_0)
+%     =  lim_{x\to \pm\infty} a_x x^n
+% \end{multline}
+
+
+% Por isso 
+
+% \[
+%     lim_{x\to -\infty} (x^2+x) = lim_{x\to -\infty} (x^2)
+% \]
+
+% Então, continuamos o cálculo:
+
+% \begin{align*}
+%     lim_{x\to -\infty} \frac{1}{\sqrt{x^2+x}-x} 
+%     &=  \frac{1}{\sqrt{lim_{x\to -\infty} (x^2+x)} - (-\infty) }  \\
+%     &=  \frac{1}{\sqrt{lim_{x\to -\infty} (x^2)} - (-\infty) }  \\
+%     &=  \frac{1}{\sqrt{(lim_{x\to -\infty} x)^2} - (-\infty) }  \\
+%     &=  \frac{1}{\sqrt{(-\infty)^2} - (-\infty) }  \\
+%     &=  \frac{1}{|-\infty| - (-\infty) }  \\
+%     &=  \frac{1}{\infty + \infty}  \\
+%     &=  \frac{1}{\infty}  \\
+%     &=  0
+% \end{align*}
+
+% A solução, portanto, é:
+
+% \[
+%     lim_{x\to -\infty} \frac{1}{\sqrt{x^2+x}-x} = 0
+% \]
+
+\subsubsection*{6. Encontre as assíntotas vertical e horizontal de, se essas existirem, de}
+
+\[
+    f(x) = \frac{x^2+2x-3}{x^2-9}
+\]
+
+O gráfico da função \(f\) admite assíntota vertical se
+
+\[
+    lim_{x\to x_0} = \pm \infty
+    \qquad \mbox{e} \qquad
+    f(x_0) = \frac{k}{0} \mbox{, } k \neq 0
+\]
+
+Além disso, nessas condições, a assíntota vertical é \(x = x_0\).
+
+Para verificar se \(f(x) = \frac{x^2+2x-3}{x^2-9}\) admite assíntota vertical,
+vamos zerar excolher \(x_0\) que zere o denominador da expressão. Portanto,
+\(x_0 = 3\)
+
+Com efeito,
+
+\[
+    f(3) = \frac{(3)^2+2(3)-3}{(3)^2-9}
+    = \frac{9+6-3}{9-9}
+    = \frac{12}{0} = \frac{k}{0} \quad \mbox{com} \quad k = 12 \neq 0
+\]
+
+Ou seja, a função \(f\) admite assíntota vertical e essa reta é \(x = 3\).
+
+\[
+    \mbox{A Assíntota Vertical de } \quad
+    f(x) = \frac{x^2+2x-3}{x^2-9}
+    \quad \mbox{é } \quad
+    x = 3
+\]
+
+Por outro lado, o gráfico da função \(f\) admite assíntota horizontal se
+\[
+    lim_{x\to \pm \infty} f = L
+\]
+
+Para verificar se \(f(x) = \frac{x^2+2x-3}{x^2-9}\) admite assíntota horizontal,
+calculemos o seguinte limite:
+
+\[
+    lim_{x\to + \infty} \frac{x^2+2x-3}{x^2-9}
+\]
+
+\begin{align*}
+    lim_{x\to + \infty} \frac{x^2+2x-3}{x^2-9}
+     & = lim_{x\to + \infty} \frac{\frac{x^2+2x-3}{x^2}}{\frac{x^2-9}{x^2}}
+    \\ &= lim_{x\to + \infty} \frac{\frac{x^2}{x^2}+\frac{2x}{x^2}+\frac{-3}{x^2}}{\frac{x^2}{x^2}+\frac{-9}{x^2}}
+    \\ &= lim_{x\to + \infty} \frac{1+\frac{2}{x}+\frac{-3}{x^2}}{1+\frac{-9}{x^2}}
+    \\ &= \frac{lim_{x\to + \infty}(1)+lim_{x\to + \infty}(\frac{2}{x})+(lim_{x\to + \infty}(\frac{-3}{x^2}))}{lim_{x\to + \infty} 1+lim_{x\to + \infty}(\frac{-9}{x^2})}
+    \\ &= \frac{lim_{x\to + \infty}(1)+lim_{x\to + \infty}(\frac{2}{\infty})+(lim_{x\to + \infty}(\frac{-3}{(\infty)^2}))}{lim_{x\to + \infty} 1+lim_{x\to + \infty}(\frac{-9}{(\infty)^2})}
+    \\ &= \frac{1+0+0}{1+0}
+    \\ &= \frac{1}{1}
+    \\ &= 1
+\end{align*}
+
+Ou seja
+
+\[
+    lim_{x\to + \infty} \frac{x^2+2x-3}{x^2-9} = 1
+\]
+
+Ou seja, a função \(f\) admite assíntota horizontal e essa reta é \(y = 1\).
+
+\[
+    \mbox{A Assíntota Horizontal de } \quad
+    f(x) = \frac{x^2+2x-3}{x^2-9}
+    \quad \mbox{é } \quad
+    y = 1
+\]
+
+\end{document}

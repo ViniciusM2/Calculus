@@ -1,0 +1,1686 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{cancel}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\usepackage{amsfonts}
+
+\title{AP3 de Cálculo I}
+\author{Vinícius Menezes Monte}
+\date{Maio de 2022}
+
+\begin{document}
+
+\maketitle
+
+\section*{Questões}
+\subsection*{Calcule a derivada indicada: (4 escores cada)}
+
+\subsubsection*{1.}
+
+\[
+    f(x) = x^2 + x \cdot \cos x + \pi , \quad f'(x)
+\]
+
+\subsubsection*{2.}
+
+\[
+    g(x) = \ln x - \frac{3^x}{\sin x} - \frac{1}{x}, \quad g'(x)
+\]
+
+\subsubsection*{3.}
+
+\[
+    \phi(\theta) = \cosh(\sin e^{\theta}) - \sinh(\cos e^{\theta}), \quad \phi'(\theta)
+\]
+
+\subsubsection*{4.}
+
+\[
+    y = x^{72} + \cos x + e^x, \quad \frac{d^{72}y}{dx^{72}}
+\]
+
+\subsubsection*{5.}
+
+\[
+    y - x^2y^2 - \cos(xy) = 4, \quad \frac{dy}{dx} \quad e \quad \frac{dx}{dy}
+\]
+
+\subsubsection*{6. Encontre uma equação da reta tangente e uma equação da reta normal à curva \(y = \sqrt{x} + \frac{1}{x^2}\) no ponto de abscissa \(x=1\).}
+
+\section*{Soluções}
+
+\subsubsection*{1.}
+
+\[
+    f(x) = x^2 + x \cdot \cos x + \pi , \quad f'(x)
+\]
+
+A derivada da soma é a soma das derivadas:
+
+\begin{equation}\label{eq:q1_soma}
+    f'(x) = \frac{d (x^2)}{dx} + \frac{d (x\cos x)}{dx} + \frac{d(\pi)}{dx}
+\end{equation}
+
+Portanto, voltemos nossa atenção para cada termo da soma.
+
+A derivada de uma constante é zero. Como \(\pi\) é uma constante, a derivada de \(\pi\) é zero.
+
+\begin{equation}\label{eq:derivative_pi_is_zero}
+    \frac{d(\pi)}{dx} = 0
+\end{equation}
+
+A derivada da função potencial \(p(x) = x^n\) é  \(p'(x) = nx^{n-1}\). Desse modo
+
+\begin{equation}\label{eq:derivative_x_to_the_2}
+    \frac{d(x^2)}{dx} = 2x
+\end{equation}
+
+Para diferenciar o termo restante, utilizaremos a Regra do Produto.
+
+A Regra do Produto diz que se
+
+\[
+    f(x) = g(x)\cdot h(x)
+\]
+
+então
+
+\[
+    f'(x) = g'(x)\cdot h(x) + g(x)\cdot h'(x)
+\]
+
+Ou ainda, usando a notação de Leibniz:
+
+\[
+    y = f(x)
+\]
+
+\[
+    u = g(x)
+\]
+
+\[
+    v = h(x)
+\]
+
+\[
+    y = u\cdot v \implies \frac{dy}{dx} = \frac{du}{dx} \cdot v + u \cdot \frac{dv}{dx}
+\]
+
+Com isso em vista, analisemos a expressão
+
+\[
+    \frac{d (x\cos x)}{dx}
+\]
+
+\begin{align*}
+    \frac{d (x\cos x)}{dx} = \frac{dx}{dx} \cdot \cos x + x \cdot \frac{d (\cos x)}{dx}
+\end{align*}
+
+Pelas propriedades da função potencial
+
+\[
+    \frac{dx}{dx} = \frac{d(x^1)}{dx} = 1 \cdot x^{1-1} = 1 \cdot x^0 = 1 \cdot 1 = 1
+\]
+
+A derivada do cosseno é menos seno.
+
+\[
+    \frac{d (\cos x)}{dx} = - \sin x
+\]
+
+Portanto
+
+\begin{align*}
+    \frac{d (x\cos x)}{dx}
+     & = 1 \cdot \cos x + x \cdot - \sin x \\
+     & = \cos x - x \cdot \sin x
+\end{align*}
+
+\begin{equation}\label{eq:q1_product_rule}
+    \frac{d (x\cos x)}{dx} = \cos x - x \cdot \sin x
+\end{equation}
+
+De acordo com as expressões
+\ref{eq:q1_soma},
+\ref{eq:derivative_pi_is_zero},
+\ref{eq:derivative_x_to_the_2}
+e \ref{eq:q1_product_rule} temos que
+
+\begin{align*}
+    f'(x)
+     & = \frac{d (x^2)}{dx} + \frac{d (x\cos x)}{dx} + \frac{d(\pi)}{dx} \\
+     & = 2x + \cos x - x \cdot \sin x + 0                                \\
+     & = 2x + \cos x - x \cdot \sin x                                    \\
+     & = \cos x - x (\sin x - 2)
+\end{align*}
+
+Finalmente:
+
+\[
+    f'(x) = \cos x - x (\sin x - 2)
+\]
+
+
+\subsubsection*{2.}
+
+\[
+    g(x) = \ln x - \frac{3^x}{\sin x} - \frac{1}{x}, \quad g'(x)
+\]
+
+Como a derivada da soma é a soma das derivadas, diferenciemos a soma termo a termo e fatoremos as constantes.
+
+\begin{equation}\label{eq:q2_diferenca}
+    g'(x) = \frac{d (\ln x)}{dx}
+    - \frac{d (\frac{3^x}{\sin x})}{dx}
+    - \frac{d(\frac{1}{x})}{dx}
+\end{equation}
+
+Portanto, voltemos nossa atenção para cada termo da diferença.
+
+É imediato que
+
+\begin{equation}\label{eq:q2_derivada_lnx}
+    \frac{d (\ln x)}{dx} = \frac{1}{x}
+\end{equation}
+
+Vamos reescrever a expressão \(\frac{3^x}{\sin x}\)
+
+\begin{align*}
+    \frac{3^x}{\sin x} = 3^x \cdot \frac{1}{\sin x} = 3^x \cdot \csc x
+\end{align*}
+
+Desse modo, temos que
+
+\[
+    \frac{d (\frac{3^x}{\sin x})}{dx} = \frac{d (3^x \cdot \csc x)}{dx}
+\]
+
+Apliquemos a Regra do Produto, descrita anteriormente:
+
+\begin{align*}
+    \frac{d (\frac{3^x}{\sin x})}{dx}
+     & = \frac{d (3^x \cdot \csc x)}{dx}                                    \\
+     & = \frac{d (3^x)}{dx} \cdot \csc x +  3^x \cdot \frac{d (\csc x)}{dx}
+\end{align*}
+
+Para continuarmos a aplicação da Regra do Produto,
+nos atentemos a algumas derivadas notáveis.
+
+Seja a função exponencial \(f_e(x) = a^x\).
+Sua derivada é \(f_e'(x) = a^x \cdot \ln a\)
+
+Seja a função cossecante \(f_{c}(x) = \csc x\).
+Sua derivada é \(f_{c}'(x) = -\csc x \cdot \cot x\)
+
+Agora, continuemos a aplicação da Regra do Produto.
+
+\begin{align*}
+    \frac{d (\frac{3^x}{\sin x})}{dx}
+     & = \frac{d (3^x)}{dx} \cdot \csc x +  3^x \cdot \frac{d (\csc x)}{dx} \\
+     & = (3^x \cdot \ln 3) \cdot \csc x + 3^x \cdot (-\csc x \cdot \cot x)  \\
+     & = 3^x \cdot \ln 3 \cdot \csc x - 3^x \cdot \csc x \cdot \cot x       \\
+     & = 3^x \cdot \csc x  \cdot \ln 3 - 3^x \cdot \csc x \cdot \cot x      \\
+     & = (3^x \cdot \csc x)  \cdot \ln 3 - (3^x \cdot \csc x) \cdot \cot x  \\
+     & = (3^x \cdot \csc x) \cdot (\ln 3 - \cot x)                          \\
+\end{align*}
+
+Ou seja
+
+\begin{equation}\label{eq:q2_derivada_3_to_the_x_over_sin_x}
+    \frac{d (\frac{3^x}{\sin x})}{dx} = (3^x \cdot \csc x) \cdot (\ln 3 - \cot x)
+\end{equation}
+
+Para diferenciar o termo restante, utilizaremos as propriedades da função potencial.
+
+\begin{align*}
+    \frac{d(\frac{1}{x})}{dx}
+    = \frac{d(x^{-1})}{dx}
+    = -1 \cdot x^{-1 - 1}
+    = -x^{-2}
+    = -\frac{1}{x^2}
+\end{align*}
+
+Ou seja
+
+\begin{equation}\label{eq:q2_derivada_1_over_x}
+    \frac{d (\frac{1}{x})}{dx} = -\frac{1}{x^2}
+\end{equation}
+
+Das expressões
+\ref{eq:q2_diferenca},
+\ref{eq:q2_derivada_lnx},
+\ref{eq:q2_derivada_3_to_the_x_over_sin_x} e
+\ref{eq:q2_derivada_1_over_x}
+decorre que
+
+\begin{align*}
+    g'(x)
+     & =
+    \frac{d (\ln x)}{dx}
+    - \frac{d (\frac{3^x}{\sin x})}{dx}
+    - \frac{d(\frac{1}{x})}{dx}
+    \\
+     & =
+    \left(\frac{1}{x}\right)
+    - ((3^x \cdot \csc x) \cdot (\ln 3 - \cot x))
+    - \left(-\frac{1}{x^2}\right)
+    \\
+     & =
+    \frac{1}{x}
+    + \frac{1}{x^2}
+    - ((3^x \cdot \csc x) \cdot (\ln 3 - \cot x))
+    \\
+     & =
+    \frac{x + 1}{x^2}
+    - (3^x \cdot \csc x  \cdot \ln 3
+    - 3^x \cdot \csc x \cdot \cot x)
+    \\
+     & =
+    \frac{x + 1}{x^2}
+    + 3^x \cdot \csc x \cdot \cot x
+    - 3^x \cdot \csc x  \cdot \ln 3
+\end{align*}
+
+Finalmente, temos que:
+
+\[
+    g'(x) =
+    \frac{x + 1}{x^2}
+    + 3^x \cdot \csc x \cdot \cot x - 3^x \cdot \csc x  \cdot \ln 3
+\]
+
+
+\subsubsection*{3.}
+
+\[
+    \phi(\theta) = \cosh(\sin e^{\theta}) - \sinh(\cos e^{\theta}), \quad \phi'(\theta)
+\]
+
+Como a derivada da soma é a soma das derivadas, diferenciemos a soma termo a termo e fatoremos as constantes.
+
+\begin{equation}\label{eq:q3_diferenca}
+    \phi'(\theta) = \frac{d(\cosh(\sin e^{\theta}))}{d\theta}
+    - \frac{d(\sinh(\cos e^{\theta}))}{d\theta}
+\end{equation}
+
+Portanto, voltemos nossa atenção para cada termo da diferença.
+
+Analisemos o primeiro termo.
+
+\[
+    \frac{d(\cosh(\sin e^{\theta}))}{d\theta}
+\]
+
+Vamos aplicar a Regra da Cadeia. Primeiro, analisemos o número
+de funções que figuram no primeiro termo.
+
+Encontramos 3 funções:
+
+\begin{itemize}
+    \item A função cosseno hiperbólico: \(\cosh\)
+    \item A função seno: \(\sin\)
+    \item A função exponencial de base e: \(e^{\theta}\)
+\end{itemize}
+
+De acordo com essa análise, sabemos que usaremos a
+Regra da Cadeia na sua forma para três funções, que é a seguinte:
+
+\[
+    \frac{dy_1}{d \theta}
+    =
+    \frac{dy_1}{du_1} \cdot \frac{du_1}{dv_1} \cdot \frac{dv_1}{d \theta}
+\]
+
+Façamos
+
+\begin{itemize}
+    \item \(y_1(u_1) = \cosh u_1\)
+    \item \(u_1(v_1) = \sin v_1 \)
+    \item \(v_1(\theta) = e^{\theta}\)
+\end{itemize}
+
+Desse modo
+
+\begin{align*}
+    \frac{dy_1}{d \theta}
+     & = \frac{d(\cosh u_1)}{du_1} \cdot \frac{d(\sin v_1)}{dv_1} \cdot \frac{d(e^{\theta})}{d \theta}
+\end{align*}
+
+Para continuarmos a aplicação da Regra da Cadeia,
+nos atentemos a algumas derivadas notáveis.
+
+\begin{itemize}
+    \item A derivada da função cosseno hiperbólico é a função seno hiperbólico:
+          \[
+              (\cosh x)' = \sinh x
+          \]
+    \item A derivada da função seno é a função cosseno:
+          \[
+              (\sin x)' = \cos x
+          \]
+    \item A derivada da função exponencial de base e é ela própria:
+          \[
+              (e^x)' = e^x
+          \]
+\end{itemize}
+
+Agora, continuemos a aplicação da Regra da Cadeia.
+
+\begin{align*}
+    \frac{dy_1}{d \theta}
+     & =
+    \frac{d(\cosh u_1)}{du_1} \cdot
+    \frac{d(\sin v_1)}{dv_1} \cdot
+    \frac{d(e^{\theta})}{d \theta}
+    \\ & =
+    (\sinh u_1) \cdot
+    (\cos v_1) \cdot
+    (e^{\theta})
+    \\ & =
+    \sinh (\sin v_1) \cdot
+    \cos v_1 \cdot
+    e^{\theta}
+    \\ & =
+    \sinh (\sin e^{\theta}) \cdot
+    \cos e^{\theta} \cdot
+    e^{\theta}
+\end{align*}
+
+Ou seja:
+
+\begin{equation}\label{eq:q3_derivada_1}
+    \frac{d(\cosh(\sin e^{\theta}))}{d\theta}
+    =
+    \sinh (\sin e^{\theta}) \cdot
+    \cos e^{\theta} \cdot
+    e^{\theta}
+\end{equation}
+
+Para o segundo termo, aplicamos procedimento análogo.
+
+Analisemos o segundo termo.
+
+\[
+    \frac{d(\sinh(\cos e^{\theta}))}{d\theta}
+\]
+
+Vamos aplicar a Regra da Cadeia. Primeiro, analisemos o número
+de funções que figuram no segundo termo.
+
+Encontramos 3 funções:
+
+\begin{itemize}
+    \item A função seno hiperbólico: \(\sinh\)
+    \item A função cosseno: \(\cos\)
+    \item A função exponencial de base e: \(e^{\theta}\)
+\end{itemize}
+
+De acordo com essa análise, sabemos que usaremos a
+Regra da Cadeia na sua forma para três funções, que é a seguinte:
+
+\[
+    \frac{dy_2}{d \theta}
+    =
+    \frac{dy_2}{du_2} \cdot \frac{du_2}{dv_2} \cdot \frac{dv_2}{d \theta}
+\]
+
+Façamos
+
+\begin{itemize}
+    \item \(y_2(u_2) = \sinh u_2\)
+    \item \(u_2(v_2) = \cos v_2 \)
+    \item \(v_2(\theta) = e^{\theta}\)
+\end{itemize}
+
+Desse modo
+
+\begin{align*}
+    \frac{dy_2}{d \theta}
+     & = \frac{d(\sinh u_2)}{du_2} \cdot \frac{d(\cos v_2)}{dv_2} \cdot \frac{d(e^{\theta})}{d \theta}
+\end{align*}
+
+Para continuarmos a aplicação da Regra da Cadeia,
+nos atentemos a algumas derivadas notáveis.
+
+\begin{itemize}
+    \item A derivada da função seno hiperbólico é a função cosseno hiperbólico:
+          \[
+              (\sinh x)' = \cosh x
+          \]
+    \item A derivada da função cosseno é a função menos seno:
+          \[
+              (\cos x)' = -\sin x
+          \]
+    \item Como já visto, a derivada da função exponencial de base e é ela própria:
+          \[
+              (e^x)' = e^x
+          \]
+\end{itemize}
+
+Agora, continuemos a aplicação da Regra da Cadeia.
+
+\begin{align*}
+    \frac{dy_2}{d \theta}
+     & =
+    \frac{d(\sinh u_2)}{du_2} \cdot
+    \frac{d(\cos v_2)}{dv_2} \cdot
+    \frac{d(e^{\theta})}{d \theta}
+    \\ & =
+    (\cosh u_2) \cdot
+    (-\sin v_2) \cdot
+    (e^{\theta})
+    \\ & =
+    -
+    \cosh (\cos v_2) \cdot
+    \sin v_2 \cdot
+    e^{\theta}
+    \\ & =
+    -
+    \cosh (\cos e^{\theta}) \cdot
+    \sin e^{\theta} \cdot
+    e^{\theta}
+\end{align*}
+
+Ou seja:
+
+\begin{equation}\label{eq:q3_derivada_2}
+    \frac{d(\sinh(\cos e^{\theta}))}{d\theta}
+    =
+    -
+    \cosh (\cos e^{\theta}) \cdot
+    \sin e^{\theta} \cdot
+    e^{\theta}
+\end{equation}
+
+Das expressões
+\ref{eq:q3_diferenca},
+\ref{eq:q3_derivada_1} e
+\ref{eq:q3_derivada_2}
+decorre que
+
+\begin{align*}
+    \phi'(\theta)
+     & =
+    \frac{d(\cosh(\sin e^{\theta}))}{d\theta}
+    - \frac{d(\sinh(\cos e^{\theta}))}{d\theta}
+    \\ &=
+    (
+    \sinh (\sin e^{\theta}) \cdot
+    \cos e^{\theta} \cdot
+    e^{\theta}
+    )
+    -
+    (
+    -
+    \cosh (\cos e^{\theta}) \cdot
+    \sin e^{\theta} \cdot
+    e^{\theta}
+    )
+    \\ &=
+    \sinh (\sin e^{\theta}) \cdot
+    \cos e^{\theta} \cdot
+    e^{\theta}
+    +
+    \cosh (\cos e^{\theta}) \cdot
+    \sin e^{\theta} \cdot
+    e^{\theta}
+    \\ &=
+    e^{\theta}
+    \cdot
+    (
+    \sinh (\sin e^{\theta}) \cdot
+    \cos e^{\theta}
+    +
+    \cosh (\cos e^{\theta}) \cdot
+    \sin e^{\theta}
+    )
+\end{align*}
+
+Finalmente:
+
+\[
+    \phi'(\theta)
+    =
+    e^{\theta}
+    \cdot
+    (
+    \sinh (\sin e^{\theta}) \cdot
+    \cos e^{\theta}
+    +
+    \cosh (\cos e^{\theta}) \cdot
+    \sin e^{\theta}
+    )
+\]
+
+\subsubsection*{4.}
+
+\[
+    y = x^{72} + \cos x + e^x, \quad \frac{d^{72}y}{dx^{72}}
+\]
+
+A derivada da soma é a soma das derivadas.
+
+\begin{equation}\label{eq:q4_soma}
+    \frac{d^{72}y}{dx^{72}}
+    =
+    \frac{d^{72}(x^{72})}{dx^{72}}
+    +
+    \frac{d^{72}(\cos x )}{dx^{72}}
+    +
+    \frac{d^{72}(e^x)}{dx^{72}}
+\end{equation}
+
+Portanto, voltemos nossa atenção para cada termo da soma.
+
+Analisemos o termo \(\frac{d^{72}(x^{72})}{dx^{72}} \).
+
+Considere as seguintes derivadas:
+
+\begin{align*}
+    \frac{d(x^{72})}{dx}           & = 72x^{71}
+    \\
+    \frac{d^2(x^{72})}{dx^2}       & = 72 \cdot 71 \cdot x^{70}
+    \\
+    \frac{d^3(x^{72})}{dx^3}       & = 72 \cdot 71 \cdot 70 \cdot x^{69}
+    \\
+    \frac{d^4(x^{72})}{dx^4}       & = 72 \cdot 71 \cdot 70 \cdot 69 \cdot x^{68}
+    \\
+    \frac{d^5(x^{72})}{dx^5}       & = 72 \cdot 71 \cdot 70 \cdot 69 \cdot 68 \cdot x^{67}
+    \\
+                                   & \dots
+    \\
+    \frac{d^n(x^{72})}{dx^n}       & = \frac{72!}{(72 - n)!} \cdot x^{72 - n}
+    \\
+                                   & \dots
+    \\
+    \frac{d^{72}(x^{72})}{dx^{72}} & = \frac{72!}{(72 - 72)!} \cdot x^{72 - 72}
+    \\
+    \frac{d^{72}(x^{72})}{dx^{72}} & = \frac{72!}{(0)!} \cdot x^{0}
+    \\
+    \frac{d^{72}(x^{72})}{dx^{72}} & = \frac{72!}{1} \cdot 1
+    \\
+    \frac{d^{72}(x^{72})}{dx^{72}} & = 72!
+\end{align*}
+
+Portanto:
+
+\begin{equation}\label{eq:q4_derivada_1}
+    \frac{d^{72}(x^{72})}{dx^{72}} = 72!
+\end{equation}
+
+Analisemos o termo \( \frac{d^{72}(\cos x )}{dx^{72}}  \).
+
+Considere as seguintes derivadas:
+
+\begin{align*}
+    \frac{d(\cos x )}{dx}           & = - \sin x
+    \\
+    \frac{d^2(\cos x )}{dx^2}       & = - \cos x
+    \\
+    \frac{d^3(\cos x )}{dx^3}       & = - ( - \sin x) = \sin x
+    \\
+    \frac{d^4(\cos x )}{dx^4}       & = \cos x, \quad 4 = 4 \cdot 1
+    \\
+    \frac{d^5(\cos x )}{dx^5}       & = - \sin x
+    \\
+    \frac{d^6(\cos x )}{dx^6}       & = - \cos x
+    \\
+    \frac{d^7(\cos x )}{dx^7}       & = \sin x
+    \\
+    \frac{d^8(\cos x )}{dx^8}       & = \cos x, \quad 8 = 4 \cdot 2
+    \\
+    \frac{d^9(\cos x )}{dx^9}       & = - \sin x
+    \\
+    \frac{d^{10}(\cos x )}{dx^{10}} & = - \cos x
+    \\
+    \frac{d^{11}(\cos x )}{dx^{11}} & = \sin x
+    \\
+    \frac{d^{12}(\cos x )}{dx^{12}} & = \cos x, \quad 12 = 4 \cdot 3
+    \\
+                                    & \dots
+    \\
+    \frac{d^{4k}(\cos x )}{dx^{4k}} & = \cos x, \quad 4k = 4 \cdot k
+    \\
+                                    & \dots
+    \\
+    \frac{d^{72}(\cos x )}{dx^{72}} & = \cos x, \quad 72 = 4 \cdot 16
+    \\
+                                    & \dots
+\end{align*}
+
+Perceba que a derivada de 4k-ésima ordem,
+\(k \in \mathbb{N} \), da função \( \cos x \) é igual a \( \cos x \).
+Como \(72 = 4k\) com \(k = 16\) e \(16 \in \mathbb{N}\), temos que:
+
+\begin{equation}\label{eq:q4_derivada_2}
+    \frac{d^{72}(\cos x )}{dx^{72}} = \cos x
+\end{equation}
+
+Analisemos o termo \( \frac{d^{72}(e^x)}{dx^{72}} \).
+
+Como a derivada da função exponencial de base
+\(e\) é a própria função exponencial de base \(e\),
+ao calcular as derivadas de ordens superiores da função
+exponencial de base \(e\), sempre obteremos ela própria.
+Desse modo
+
+\begin{equation}\label{eq:q4_derivada_3}
+    \frac{d^{72}(e^x)}{dx^{72}} = e^x
+\end{equation}
+
+Das expressões
+\ref{eq:q4_soma},
+\ref{eq:q4_derivada_1},
+\ref{eq:q4_derivada_2} e
+\ref{eq:q4_derivada_3}
+decorre que
+
+\begin{align*}
+    \frac{d^{72}y}{dx^{72}}
+     & =
+    \frac{d^{72}(x^{72})}{dx^{72}}
+    +
+    \frac{d^{72}(\cos x )}{dx^{72}}
+    +
+    \frac{d^{72}(e^x)}{dx^{72}}
+    \\ &=
+    (72!)
+    +
+    (\cos x)
+    +
+    (e^x)
+    \\ &=
+    72!
+    +
+    \cos x
+    +
+    e^x
+\end{align*}
+
+Finalmente:
+
+\[
+    \frac{d^{72}y}{dx^{72}} = \cos x + e^x + 72!
+\]
+
+\subsubsection*{5.}
+
+\[
+    y - x^2y^2 - \cos xy = 4, \quad \frac{dy}{dx} \quad e \quad \frac{dx}{dy}
+\]
+
+Apliquemos a derivação implícita.
+
+\[
+    \frac{d(y - x^2y^2 - \cos xy)}{dx} = \frac{d(4)}{dx}
+\]
+
+Diferenciemos a soma termo a termo e fatoremos as constantes.
+
+\[
+    - \frac{d(\cos xy)}{dx} +  \frac{dy}{dx} - \frac{d(x^2y^2)}{dx}  = \frac{d(4)}{dx}
+\]
+
+Apliquemos a Regra da Cadeia
+
+\[
+    \frac{d(\cos xy)}{dx}
+    =
+    \frac{d(\cos u)}{du}
+    \cdot
+    \frac{du}{dx}
+    ,\quad
+    \text{onde}
+    \quad
+    u = xy
+    \quad
+    \text{e}
+    \quad
+    \frac{d(\cos u)}{du} = -\sin u
+    \quad
+    \text{:}
+\]
+
+\[
+    \frac{dy}{dx} - \frac{d(x^2y^2)}{dx} - \left(- \frac{d(xy)}{dx} \cdot  \sin xy \right)  = \frac{d(4)}{dx}
+\]
+
+Simplifiquemos a expressão:
+
+\[
+    \frac{dy}{dx} - \frac{d(x^2y^2)}{dx} + \frac{d(xy)}{dx} \cdot  \sin xy   = \frac{d(4)}{dx}
+\]
+
+Apliquemos a Regra do Produto
+
+\[
+    \frac{d(uv)}{dx}
+    =
+    v \cdot \frac{du}{dx}
+    +
+    u \cdot \frac{dv}{dx},
+    \quad
+    \text{onde}
+    \quad
+    u = x
+    \quad
+    \text{e}
+    \quad
+    v = y
+    \quad
+    \text{:}
+\]
+
+\[
+    \frac{dy}{dx}
+    -
+    \frac{d(x^2y^2)}{dx}
+    +
+    \left(
+    y
+    \cdot
+    \frac{dx}{dx}
+    +
+    x
+    \cdot
+    \frac{dy}{dx}
+    \right)
+    \cdot
+    \sin xy
+    =
+    \frac{d(4)}{dx}
+\]
+
+Organizemos a expressão
+
+\[
+    -
+    \frac{d(x^2y^2)}{dx}
+    +
+    \sin xy
+    \cdot
+    \left(
+    x
+    \cdot
+    \frac{dy}{dx}
+    +
+    \frac{dx}{dx}
+    \cdot
+    y
+    \right)
+    +
+    \frac{dy}{dx}
+    =
+    \frac{d(4)}{dx}
+\]
+
+Apliquemos a Regra do Produto
+
+\[
+    \frac{d(uv)}{dx}
+    =
+    v
+    \cdot
+    \frac{du}{dx}
+    +
+    u
+    \cdot
+    \frac{dv}{dx}
+    ,
+    \quad
+    \text{onde}
+    \quad
+    u = x^2
+    \quad
+    \text{e}
+    \quad
+    v = y^2
+    \quad
+    \text{:}
+\]
+
+\[
+    -
+    \left(
+    x^2
+    \cdot
+    \frac{d(y^2)}{dx}
+    +
+    y^2
+    \cdot
+    \frac{d(x^2)}{dx}
+    \right)
+    +
+    \sin xy
+    \cdot
+    \left(
+    x
+    \cdot
+    \frac{dy}{dx}
+    +
+    \frac{dx}{dx}
+    \cdot
+    y
+    \right)
+    +
+    \frac{dy}{dx}
+    =
+    \frac{d(4)}{dx}
+\]
+
+Simplifiquemos a expressão:
+
+\[
+    -
+    x^2
+    \cdot
+    \frac{d(y^2)}{dx}
+    -
+    \frac{d(x^2)}{dx}
+    \cdot
+    y^2
+    +
+    \sin xy
+    \cdot
+    \left(
+    x
+    \cdot
+    \frac{dy}{dx}
+    +
+    \frac{dx}{dx}
+    \cdot
+    y
+    \right)
+    +
+    \frac{dy}{dx}
+    =
+    \frac{d(4)}{dx}
+\]
+
+Apliquemos a Regra da Cadeia
+
+\[
+    \frac{d y^2}{dx}
+    =
+    \frac{d(u^2)}{du}
+    \cdot
+    \frac{du}{dx}
+    ,
+    \quad
+    \text{onde}
+    \quad
+    u = y
+    \quad
+    \text{e}
+    \quad
+    \frac{d(u^2)}{du}
+    =
+    2u
+    \quad
+    \text{:}
+\]
+
+\[
+    -
+    x^2
+    \cdot
+    \left(
+    2y
+    \cdot
+    \frac{dy}{dx}
+    \right)
+    -
+    \frac{d(x^2)}{dx}
+    \cdot
+    y^2
+    +
+    \sin xy
+    \cdot
+    \left(
+    x
+    \cdot
+    \frac{dy}{dx}
+    +
+    \frac{dx}{dx}
+    \cdot
+    y
+    \right)
+    +
+    \frac{dy}{dx}
+    =
+    \frac{d(4)}{dx}
+\]
+
+Simplifiquemos a expressão:
+
+\[
+    -
+    2
+    x^2
+    \cdot
+    \frac{dy}{dx}
+    \cdot
+    y
+    -
+    \frac{d(x^2)}{dx}
+    \cdot
+    y^2
+    +
+    \sin xy
+    \cdot
+    \left(
+    x
+    \cdot
+    \frac{dy}{dx}
+    +
+    \frac{dx}{dx}
+    \cdot
+    y
+    \right)
+    +
+    \frac{dy}{dx}
+    =
+    \frac{d(4)}{dx}
+\]
+
+Organizemos a expressão
+
+\[
+    -
+    \frac{d(x^2)}{dx}
+    \cdot
+    y^2
+    +
+    \sin xy
+    \cdot
+    \left(
+    x
+    \cdot
+    \frac{dy}{dx}
+    +
+    \frac{dx}{dx}
+    \cdot
+    y
+    \right)
+    +
+    \frac{dy}{dx}
+    -
+    2
+    x^2
+    \cdot
+    y
+    \cdot
+    \frac{dy}{dx}
+    =
+    \frac{d(4)}{dx}
+\]
+
+Usemos as propriedades da função potencial.
+
+\[
+    \frac{d(x^n)}{dx}
+    =
+    nx^{n-1}
+    ,
+    \quad
+    \text{onde}
+    \quad
+    n = 2
+    \quad
+    .
+    \quad
+    \frac{d(x^2)}{dx} = 2x
+\]
+
+\[
+    -
+    y^2
+    \cdot
+    2x
+    +
+    \sin xy
+    \cdot
+    \left(
+    x
+    \cdot
+    \frac{dy}{dx}
+    +
+    \frac{dx}{dx}
+    \cdot
+    y
+    \right)
+    +
+    \frac{dy}{dx}
+    -
+    2
+    x^2
+    \cdot
+    y
+    \cdot
+    \frac{dy}{dx}
+    =
+    \frac{d(4)}{dx}
+\]
+
+Usemos as propriedades da função potencial.
+
+\[
+    \frac{d(x^n)}{dx}
+    =
+    nx^{n-1}
+    ,
+    \quad
+    \text{onde}
+    \quad
+    n = 1
+    \quad
+    .
+    \quad
+    \frac{d(x)}{dx} = 1
+\]
+
+\[
+    -
+    y^2
+    \cdot
+    2x
+    +
+    \sin xy
+    \cdot
+    \left(
+    x
+    \cdot
+    \frac{dy}{dx}
+    +
+    1
+    \cdot
+    y
+    \right)
+    +
+    \frac{dy}{dx}
+    -
+    2
+    x^2
+    \cdot
+    y
+    \cdot
+    \frac{dy}{dx}
+    =
+    \frac{d(4)}{dx}
+\]
+
+A derivada da função constante é zero.
+
+\[
+    -
+    2
+    x
+    y^2
+    +
+    \frac{dy}{dx}
+    -
+    2
+    x^2
+    \cdot
+    y
+    \cdot
+    \frac{dy}{dx}
+    +
+    \sin xy
+    \cdot
+    \left(
+    y
+    +
+    x
+    \cdot
+    \frac{dy}{dx}
+    \right)
+    =
+    0
+\]
+
+Desenvolvemos a expressão
+
+\[
+    \sin(xy) \cdot y
+    -
+    2
+    x
+    y^2
+    +
+    \frac{dy}{dx}
+    +
+    x \cdot \sin(xy) \cdot \frac{dy}{dx}
+    -
+    2
+    x^2
+    \cdot
+    y
+    \cdot
+    \frac{dy}{dx}
+    =
+    0
+\]
+
+Subtraímos \(y \cdot \sin(xy) - 2xy^2\) de ambos os lados da igualdade.
+
+\begin{align*}
+    y \cdot \sin(xy)
+    - y \cdot \sin(xy)
+    -
+    2
+    x
+    y^2
+    + 2xy^2
+    +
+    \frac{dy}{dx}
+    +
+    x \cdot \sin(xy) \cdot \frac{dy}{dx}
+    -
+    2
+    x^2
+    \cdot
+    y
+    \cdot
+    \frac{dy}{dx}
+     & =
+    - y \cdot \sin(xy) + 2xy^2
+    \\
+    (
+    y \cdot \sin(xy)
+    - y \cdot \sin(xy)
+    )
+    +
+    (
+    -
+    2
+    x
+    y^2
+    +
+    2xy^2
+    )
+    +
+    \frac{dy}{dx}
+    +
+    x \cdot \sin(xy) \cdot \frac{dy}{dx}
+    -
+    2
+    x^2
+    \cdot
+    y
+    \cdot
+    \frac{dy}{dx}
+     & =
+    - y \cdot \sin(xy) + 2xy^2
+    \\
+    (
+    0
+    )
+    +
+    (
+    0
+    )
+    +
+    \frac{dy}{dx}
+    +
+    x \cdot \sin(xy) \cdot \frac{dy}{dx}
+    -
+    2
+    x^2
+    \cdot
+    y
+    \cdot
+    \frac{dy}{dx}
+     & =
+    - y \cdot \sin(xy) + 2xy^2
+    \\
+    \frac{dy}{dx}
+    +
+    x \cdot \sin(xy) \cdot \frac{dy}{dx}
+    -
+    2
+    x^2
+    \cdot
+    y
+    \cdot
+    \frac{dy}{dx}
+     & =
+    - y \cdot \sin(xy) + 2xy^2
+\end{align*}
+
+Fatoramos \(\frac{dy}{dx}\)
+
+\begin{align*}
+    \frac{dy}{dx}
+    +
+    x \cdot \sin(xy) \cdot \frac{dy}{dx}
+    -
+    2
+    x^2
+    \cdot
+    y
+    \cdot
+    \frac{dy}{dx}
+     & =
+    - y \cdot \sin(xy) + 2xy^2
+    \\
+    \frac{dy}{dx}
+    \cdot
+    (
+    1
+    +
+    x \cdot \sin(xy)
+    -
+    2
+    x^2
+    \cdot
+    y
+    )
+     & =
+    - y \cdot \sin(xy) + 2xy^2
+\end{align*}
+
+Dividimos ambos os lados por \(
+1
++
+x \cdot \sin(xy)
+-
+2
+x^2
+\cdot
+y
+\)
+
+\begin{align*}
+    \frac{dy}{dx}
+    \cdot
+    \frac{
+        1
+        +
+        x \cdot \sin(xy)
+        -
+        2
+        x^2
+        \cdot
+        y
+    }{
+        1
+        +
+        x \cdot \sin(xy)
+        -
+        2
+        x^2
+        \cdot
+        y
+    }
+     & =
+    \frac{
+        - y \cdot \sin(xy) + 2xy^2
+    }{
+        1
+        +
+        x \cdot \sin(xy)
+        -
+        2
+        x^2
+        \cdot
+        y
+    }
+    \\
+    \frac{dy}{dx}
+    \cdot
+    1
+     & =
+    \frac{
+        - y \cdot \sin(xy) + 2xy^2
+    }{
+        1
+        +
+        x \cdot \sin(xy)
+        -
+        2
+        x^2
+        \cdot
+        y
+    }
+    \\
+    \frac{dy}{dx}
+     & =
+    \frac{
+        - y \cdot \sin(xy) + 2xy^2
+    }{
+        1
+        +
+        x \cdot \sin(xy)
+        -
+        2
+        x^2
+        \cdot
+        y
+    }
+\end{align*}
+
+Com isso, obtemos \(\frac{dy}{dx}\)
+
+\begin{equation}\label{eq:dy_dx}
+    \frac{dy}{dx}
+    =
+    \frac{
+        -
+        \sin(xy)
+        \cdot
+        y
+        + 2xy^2
+    }{
+        1
+        +
+        x \cdot \sin(xy)
+        -
+        2
+        x^2
+        \cdot
+        y
+    }
+\end{equation}
+
+Para obter \(\frac{dx}{dy}\), recorreremos à seguinte propriedade,
+que vale para as funções com inversa:
+
+\[
+    \frac{dx}{dy}
+    =
+    \frac{1}{\frac{dy}{dx}}
+\]
+
+Desse modo
+
+\begin{align*}
+    \frac{dx}{dy}
+     & =
+    \frac{1}{\frac{dy}{dx}}
+    \\ &=
+    \frac{1}{
+        \frac{
+            - y \cdot \sin(xy) + 2xy^2
+        }{
+            1
+            +
+            x \cdot \sin(xy)
+            -
+            2
+            x^2
+            \cdot
+            y
+        }
+    }
+    \\ &=
+    1
+    \cdot
+    \frac{
+        1
+        +
+        x \cdot \sin(xy)
+        -
+        2
+        x^2
+        \cdot
+        y
+    }{
+        - y \cdot \sin(xy) + 2xy^2
+    }
+    \\ &=
+    \frac{
+        1
+        +
+        x \cdot \sin(xy)
+        -
+        2
+        x^2
+        \cdot
+        y
+    }{
+        - y \cdot \sin(xy) + 2xy^2
+    }
+\end{align*}
+
+Portanto
+
+\begin{equation}
+    \frac{dx}{dy}
+    =
+    \frac{
+        1
+        +
+        x \cdot \sin(xy)
+        -
+        2
+        x^2
+        \cdot
+        y
+    }{
+        - y \cdot \sin(xy) + 2xy^2
+    }
+\end{equation}
+
+\subsubsection*{6. Encontre uma equação da reta tangente e uma equação da reta normal à curva \(y = \sqrt{x} + \frac{1}{x^2}\) no ponto de abscissa \(x=1\).}
+
+Podemos obter uma equação de reta com base em um ponto que faz parte da reta
+e o coeficiente angular da reta.
+
+A expressão que permite isso é conhecida como Equação Fundamental
+da Reta, e é dada por
+
+\[
+    y - y_0 = m (x - x_0)
+\]
+
+Em que
+\begin{itemize}
+    \item \(y_0\) é a ordenada de um ponto conhecido que faz parte da reta
+    \item \(x_0\) é a abscissa de um ponto conhecido que faz parte da reta
+    \item m é o coeficiente angular da reta
+\end{itemize}
+
+Primeiro obteremos um ponto que faz parte da reta.
+
+Com base na abscissa fornecida e na equação da curva,
+vamos obter o ponto em que a reta tangente tangencia a curva.
+Chamemos esse ponto de P.
+
+
+\begin{align*}
+    P(x_0, y_0) & = P\left(1, \sqrt{1} + \frac{1}{1^2}\right)
+    \\
+    P(x_0, y_0) & = P\left(1, 1 + 1\right)
+    \\
+    P(x_0, y_0) & = P(1, 2)
+\end{align*}
+
+Portanto, P é o ponto de abscissa \(x_0=1\) e de ordenada \(y_0=2\).
+
+Agora, precisamos de algum mecanismo que nos permita obter
+o coeficiente angular da reta tangente à curva.
+
+Nos atentemos ao Significado Geométrico da Diferenciação:
+
+\(f'(x_0)\) representa o coeficiente angular da reta tangente
+à curva \(f(x) = y\), no ponto \(P(x_0, f(x_0))\).
+
+De acordo com o Significado Geométrico da Diferenciação,
+temos que \(y' = (\sqrt{x} + \frac{1}{x^2})'\) é uma expressão
+que fornece o coeficiente angular da reta tangente à curva no
+ponto de abcissa \(x\).
+
+Desse modo, devemos obter \(y'\), pois \(y'(1)\) é o coeficiente
+angular \(m_t\) da reta tangente que desejamos escrever uma equação.
+
+A derivada da soma é a soma das derivadas.
+
+\begin{equation}\label{eq:q6_soma}
+    y'(x) = \frac{d(\sqrt{x})}{dx} + \frac{d(\frac{1}{x^2})}{dx}
+\end{equation}
+
+Voltemos nossa atenção para cada termo da soma.
+
+Quanto ao termo \( \frac{d(\sqrt{x})}{dx}\)
+
+\begin{align*}
+    \frac{d(\sqrt{x})}{dx}
+    =
+    \frac{d(x^{\frac{1}{2}})}{dx}
+\end{align*}
+
+Exploremos as propriedades da função potencial.
+
+\begin{align*}
+    \frac{d(\sqrt{x})}{dx}
+    &=
+    \frac{1}{2} \cdot x^{\frac{1}{2} - 1}
+    \\
+    &=
+    \frac{1}{2} \cdot x^{-\frac{1}{2}}
+    \\
+    &=
+    \frac{1}{2} \cdot \frac{1}{\sqrt{x}}
+    \\
+    &=
+    \frac{1}{2\sqrt{x}}
+\end{align*}
+
+Ou seja
+
+\begin{equation}\label{eq:q6_derivada_1}
+    \frac{d(\sqrt{x})}{dx} = \frac{1}{2\sqrt{x}}
+\end{equation}
+
+Quanto ao termo \( \frac{d(\frac{1}{x^2})}{dx}\)
+
+
+\[
+    \frac{d(\frac{1}{x^2})}{dx}  = \frac{d(x^{-2})}{dx}
+\]
+
+Novamente, exploremos as propriedades da função potencial.
+
+\begin{align*}
+    \frac{d(\frac{1}{x^2})}{dx} 
+    &= -2x^{-3}
+    \\
+    &= -2 \cdot \frac{1}{x^3}
+    \\
+    &= -\frac{2}{x^3}
+\end{align*}
+
+Ou seja 
+
+\begin{equation}\label{eq:q6_derivada_2}
+    \frac{d(\frac{1}{x^2})}{dx} = -\frac{2}{x^3}
+\end{equation}
+
+Das expressões
+\ref{eq:q6_soma},
+\ref{eq:q6_derivada_1} e
+\ref{eq:q6_derivada_2}
+decorre que
+
+\begin{equation}\label{eq:q6_derivada_res}
+    y'(x) = \frac{1}{2\sqrt{x}} - \frac{2}{x^3}
+\end{equation}
+
+Agora podemos calcular \(m_t\)
+
+\[
+  m_t 
+  =  y'(1) 
+  = \frac{1}{2\sqrt{1}} - \frac{2}{1^3} 
+  = \frac{1}{2} - 2
+  = - \frac{3}{2}
+\]
+
+Ou seja
+
+\begin{equation}\label{eq:q6_mt}
+    m_t = -\frac{3}{2}
+\end{equation}
+
+A reta normal ao gráfico de uma função, em um ponto,
+é perpendicular à reta tangente, passando por esse ponto. 
+É conhecido que o coeficiente angular da normal é o
+oposto do inverso do coeficiente angular da tangente.
+
+Chamemos o coeficiente angular da normal \(m_n\)
+
+\[
+m_n 
+= - \frac{1}{m_t} 
+= - \frac{1}{- \frac{3}{2}}
+= - 1 \cdot -\frac{2}{3}
+= \frac{2}{3} 
+\]
+
+\begin{equation}
+    m_n = \frac{2}{3} 
+\end{equation}
+
+Observe que ponto P também pertence à reta normal em questão.
+
+Com isso, temos toda a informação necessária para escrever uma equação
+da reta tangente e da normal no ponto de abscissa \(x=1\).
+
+Primeiro, obteremos uma equação da reta tangente.
+
+\begin{align*}
+    y_t - y_0 
+    &= m_t (x_t - x_0)
+    \\
+    y_t - 2
+    &= -\frac{3}{2} (x_t - 1)
+    \\
+    y_t 
+    &= -\frac{3}{2} (x_t - 1) + 2
+    \\
+    y_t 
+    &= -\frac{3}{2}x_t + \frac{3}{2} + 2
+    \\
+    y_t 
+    &= -\frac{3}{2}x_t + \frac{7}{2}
+\end{align*}
+
+Depois, obteremos uma equação da reta normal.
+
+\begin{align*}
+    y_n - y_0 
+    &= m_n (x_n - x_0)
+    \\
+    y_n - 2
+    &= \frac{2}{3} (x_n - 1)
+    \\
+    y_n
+    &= \frac{2}{3} x_n - \frac{2}{3} + 2
+    \\
+    y_n
+    &= \frac{2}{3} x_n + \frac{4}{3}
+\end{align*}
+
+Finalmente:
+
+Uma equação da reta tangente à curva \(y = \sqrt{x} + \frac{1}{x^2}\)
+no ponto de abscissa \(x=1\) é
+
+\[
+    y_t 
+    = -\frac{3}{2}x_t + \frac{7}{2}
+\]
+
+Uma equação da reta normal à curva \(y = \sqrt{x} + \frac{1}{x^2}\)
+no ponto de abscissa \(x=1\) é
+
+\[
+    y_n
+    = \frac{2}{3} x_n + \frac{4}{3}    
+\]
+
+
+\end{document}

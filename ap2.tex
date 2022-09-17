@@ -1,0 +1,642 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{cancel}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+
+\title{AP2 de Cálculo I}
+\author{Vinícius Menezes Monte}
+\date{Abril de 2022}
+
+\begin{document}
+
+\maketitle
+
+\section*{Questões}
+\subsection*{Calcule: (4 escores cada)}
+\subsubsection*{1.}
+
+\[
+    \lim_{x \to 0} \frac{\sin 3x}{4x}
+\]
+
+\subsubsection*{2.}
+
+\[
+    \lim_{x \to 0} \frac{x^2}{1 - \cos 10x}
+\]
+
+\subsubsection*{3.}
+
+\[
+    \lim_{x \to 0} 3^{\frac{1 - \sec^2(20x) }{\sec^2(10x) - 1}}
+\]
+
+\subsubsection*{4.}
+
+\[
+    \lim_{x \to +\infty}
+    \left(
+    \ln
+    \left(
+        1 + \frac{3}{5x}
+        \right)
+        ^{2x}
+    \right)
+\]
+
+\subsubsection*{5.}
+
+\[
+    \lim_{x \to 0} \frac{2^x - 6^x}{10^x - 20^x}
+\]
+
+\subsubsection*{6. Analise a continuidade de}
+
+\begin{equation} \label{question_6_func_def}
+    f(x) =
+    \left\{
+    \begin{array}{ll}
+        x + x^2  & \mbox{se } x < 1     \\
+        3x^4 - 1 & \mbox{se } x \geq  1
+    \end{array}
+    \right.
+\end{equation}
+
+\section*{Soluções}
+
+\subsubsection*{1.}
+
+\[
+    \lim_{x \to 0} \frac{\sin 3x}{4x}
+\]
+
+
+\begin{align*}
+    \lim_{x \to 0} \frac{\sin 3x}{4x}
+     & = \lim_{x \to 0} \frac{1}{4} \cdot \frac{\sin 3x}{x}                                        \\
+     & = \frac{1}{4} \cdot \lim_{x \to 0} \frac{\sin 3x}{x}                                        \\
+     & = \frac{1}{4} \cdot \lim_{x \to 0} \left(\frac{3}{3} \cdot \frac{\sin 3x}{x}\right)         \\
+     & = \frac{1}{4} \cdot 3 \cdot \lim_{x \to 0} \left(\frac{1}{3} \cdot \frac{\sin 3x}{x}\right) \\
+     & = \frac{1}{4} \cdot 3 \cdot \lim_{x \to 0}  \frac{\sin 3x}{3x}                              \\
+     & = \frac{3}{4} \cdot \lim_{x \to 0}  \frac{\sin 3x}{3x}                                      \\
+\end{align*}
+
+Façamos t = 3x. Perceba que se \(3x = 0 \implies t = 0 \)
+
+\begin{align} \label{question_1_3x_is_t}
+    \lim_{x \to 0} \frac{\sin 3x}{4x}
+     & = \frac{3}{4} \cdot \lim_{x \to 0}  \frac{\sin t}{t}
+\end{align}
+
+
+Agora, vamos nos recordar da definição do limite trigonométrico fundamental:
+
+
+\begin{equation} \label{fundamental_trigonometric_limit_definition}
+    \lim_{y \to 0} \frac{\sin y}{y} = 1
+\end{equation}
+
+Com base nas expressões \ref{question_1_3x_is_t} e \ref{fundamental_trigonometric_limit_definition}
+podemos dizer que:
+
+\[
+    \lim_{x \to 0} \frac{\sin 3x}{4x}
+    = \frac{3}{4} \cdot \lim_{t \to 0}  \frac{\sin t}{t}
+    = \frac{3}{4} \cdot 1
+    = \frac{3}{4}
+\]
+
+Ou seja:
+
+\[
+    \lim_{x \to 0} \frac{\sin 3x}{4x}
+    = \frac{3}{4}
+\]
+
+\subsubsection*{2.}
+
+\[
+    \lim_{x \to 0} \frac{x^2}{1 - \cos 10x}
+\]
+
+% Relação Fundamental da Triginometria:
+
+% \begin{equation} \label{fundamental_trigonometry_relation}
+%     \cos^2 x + \sin^2 x = 1
+% \end{equation}
+
+% Cosseno de 2x: 
+
+% \begin{equation} \label{cos_2x}
+%     \cos 2x = \cos^2 x - \sin^2 x
+% \end{equation}
+
+
+\begin{align*}
+    \lim_{x \to 0} \frac{x^2}{1 - \cos 10x}
+     & = \lim_{x \to 0} \left( \frac{x^2}{1 - \cos 10x} \cdot \frac{1 + \cos 10x}{1 + \cos 10x}  \right) \\
+     & = \lim_{x \to 0} \frac{(x^2)(1 + \cos 10x)}{(1 - \cos 10x)(1 + \cos 10x)}                         \\
+     & = \lim_{x \to 0} \frac{(x^2)(1 + \cos 10x)}{1 - \cos^2 10x}                                       \\
+     & = \lim_{x \to 0} \frac{(x^2)(1 + \cos 10x)}{\sin^2 10x}                                           \\
+     & = \lim_{x \to 0} \left(\frac{x^2}{\sin^2 10x} \cdot (1 + \cos 10x) \right)                        \\
+\end{align*}
+
+O limite do produto é o produto dos limites:
+
+\begin{equation} \label{question_2_product_limit}
+    \lim_{x \to 0} \frac{x^2}{1 - \cos 10x}
+    =  \lim_{x \to 0} \frac{x^2}{\sin^2 10x} \cdot \lim_{x \to 0}(1 + \cos 10x)
+\end{equation}
+
+
+
+Calculemos primeiro \(\lim_{x \to 0} \frac{x^2}{\sin^2 10x}\)
+
+\begin{align*}
+    \lim_{x \to 0} \frac{x^2}{\sin^2 10x}
+     & = \lim_{x \to 0} \left(\frac{x}{\sin 10x}\right)^2                   \\
+     & = \lim_{x \to 0} \left(\left(\frac{\sin 10x}{x}\right)^{-1}\right)^2 \\
+     & = \lim_{x \to 0} \left(\frac{\sin 10x}{x}\right)^{-2}                \\
+     & =  \left( \lim_{x \to 0} \frac{\sin 10x}{x}\right)^{-2}              \\
+     & =  \left( 10 \cdot \lim_{x \to 0} \frac{\sin 10x}{10x}\right)^{-2}   \\
+\end{align*}
+
+Façamos \(t = 10x\). Perceba que se \(10x = 0 \implies t = 0 \)
+
+\begin{equation} \label{question_2_10x_is_t}
+    \lim_{x \to 0} \frac{x^2}{\sin^2 10x}
+    =  \left( 10 \cdot \lim_{x \to 0} \frac{\sin 10x}{10x}\right)^{-2}
+    =  \left( 10 \cdot \lim_{t \to 0} \frac{\sin t}{t}\right)^{-2}
+\end{equation}
+
+Com base nas expressões \ref{question_2_10x_is_t} e \ref{fundamental_trigonometric_limit_definition}
+podemos dizer que:
+
+\begin{equation*}
+    \lim_{x \to 0} \frac{x^2}{\sin^2 10x}
+    =  \left( 10 \cdot \lim_{t \to 0} \frac{\sin t}{t}\right)^{-2}
+    =  (10 \cdot 1)^{-2}
+    =  (10)^{-2}
+    = \left(\frac{1}{10}\right)^2
+    = \frac{1}{100}
+\end{equation*}
+
+Ou seja:
+
+\begin{equation} \label{question_2_first_factor}
+    \lim_{x \to 0} \frac{x^2}{\sin^2 10x} = \frac{1}{100}
+\end{equation}
+
+
+Agora, calculemos \(\lim_{x \to 0} (1 + \cos 10x)\)
+
+\begin{align*}
+    \lim_{x \to 0} (1 + \cos 10x)
+     & =  \lim_{x \to 0} 1 + \lim_{x \to 0} \cos 10x \\
+     & =  1 + \lim_{x \to 0} \cos 10(0)              \\
+     & =  1 + \lim_{x \to 0} \cos 0                  \\
+     & =  1 + \lim_{x \to 0} 1                       \\
+     & =  1 + 1                                      \\
+     & =  2                                          \\
+\end{align*}
+
+Ou seja:
+
+\begin{equation} \label{question_2_second_factor}
+    \lim_{x \to 0} (1 + \cos 10x) = 2
+\end{equation}
+
+A partir das expressões \ref{question_2_product_limit}, \ref{question_2_first_factor} e \ref{question_2_second_factor} podemos afirmar que:
+
+\[
+    \lim_{x \to 0} \frac{x^2}{1 - \cos 10x}
+    =  \lim_{x \to 0} \frac{x^2}{\sin^2 10x} \cdot \lim_{x \to 0}(1 + \cos 10x)
+    = \frac{1}{100} \cdot 2
+    = \frac{1}{50}
+\]
+
+Ou seja:
+
+\[
+    \lim_{x \to 0} \frac{x^2}{1 - \cos 10x}
+    = \frac{1}{50}
+\]
+
+
+\subsubsection*{3.}
+
+\[
+    \lim_{x \to 0} 3^{\frac{1 - \sec^2(20x) }{\sec^2(10x) - 1}}
+\]
+
+Podemos escrever a expressão como:
+
+\begin{equation} \label{question_3_expression}
+    \lim_{x \to 0} 3^{\frac{1 - \sec^2(20x) }{\sec^2(10x) - 1}}
+        = 3^{\lim_{x \to 0} \frac{1 - \sec^2(20x) }{\sec^2(10x) - 1} }
+\end{equation}
+
+Agora, podemos focar em obter o valor do limite que aparece no expoente:
+
+\[
+    \lim_{x \to 0} \frac{1 - \sec^2(20x) }{\sec^2(10x) - 1}
+\]
+
+\begin{align*}
+    \lim_{x \to 0} \frac{1 - \sec^2(20x) }{\sec^2(10x) - 1}
+     & = \lim_{x \to 0} \frac{1 - \frac{1}{\cos^2 (20x)} }{\frac{1}{\cos^2 (10x)} - 1}                                    \\
+     & = \lim_{x \to 0} \frac{1 - \frac{1}{1 - \sin^2 (20x)} }{\frac{1}{1 - \sin^2 (10x)} - 1}                            \\
+     & = \lim_{x \to 0} \frac{\frac{1 - \sin^2 (20x)}{1 - \sin^2 (20x)}
+    - \frac{1}{1 - \sin^2 (20x)} }{\frac{1}{1 - \sin^2 (10x)} - \frac{1 - \sin^2 (10x)}{1 - \sin^2 (10x)}}                \\
+     & = \lim_{x \to 0} \frac{
+        \frac{1 - \sin^2 (20x) -1}{1 - \sin^2 (20x)}
+    }{
+        \frac{1-(1 - \sin^2 (10x))}{1 - \sin^2 (10x)}
+    }
+    \\
+     & = \lim_{x \to 0} \frac{
+        \frac{1 - \sin^2 (20x) -1}{1 - \sin^2 (20x)}
+    }{
+        \frac{1 - 1 + \sin^2 (10x)}{1 - \sin^2 (10x)}
+    }
+    \\
+     & = \lim_{x \to 0} \frac{
+        \frac{- \sin^2 (20x) + (1 -1)}{1 - \sin^2 (20x)}
+    }{
+        \frac{(1 - 1) + \sin^2 (10x)}{1 - \sin^2 (10x)}
+    }
+    \\
+     & = \lim_{x \to 0} \frac{
+        \frac{- \sin^2 (20x)}{1 - \sin^2 (20x)}
+    }{
+        \frac{\sin^2 (10x)}{1 - \sin^2 (10x)}
+    }
+    \\
+     & = \lim_{x \to 0} \frac{
+        \frac{- \sin^2 (20x)}{1 - \sin^2 (20x)}
+    }{
+        \frac{\sin^2 (10x)}{1 - \sin^2 (10x)}
+    }
+    \\
+     & = \lim_{x \to 0} \frac{
+        - \frac{ \sin^2 (20x)}{1 - \sin^2 (20x)}
+    }{
+        \frac{\sin^2 (10x)}{1 - \sin^2 (10x)}
+    }
+    \\
+     & = \lim_{x \to 0} \left(- \frac{ \sin^2 (20x)}{1 - \sin^2 (20x)} \cdot \frac{1 - \sin^2 (10x)}{\sin^2 (10x)}\right) \\
+     & = - \lim_{x \to 0} \left(\frac{ \sin^2 (20x)}{1 - \sin^2 (20x)} \cdot \frac{1 - \sin^2 (10x)}{\sin^2 (10x)}\right) \\
+     & = - \lim_{x \to 0} \left(\frac{ \sin^2 (20x)}{\sin^2 (10x)} \cdot \frac{1 - \sin^2 (10x)}{1 - \sin^2 (20x)}\right) \\
+\end{align*}
+
+Ou seja:
+
+\begin{equation} \label{question_3_minus_product_limit}
+    \lim_{x \to 0} \frac{1 - \sec^2(20x) }{\sec^2(10x) - 1}
+    = - \lim_{x \to 0} \left(\frac{ \sin^2 (20x)}{\sin^2 (10x)} \cdot \frac{1 - \sin^2 (10x)}{1 - \sin^2 (20x)}\right) \\
+\end{equation}
+
+O limite do produto é o produto dos limites:
+
+\begin{equation} \label{question_3_product_limit}
+    \lim_{x \to 0} \left(\frac{ \sin^2 (20x)}{\sin^2 (10x)} \cdot \frac{1 - \sin^2 (10x)}{1 - \sin^2 (20x)}\right)
+    = \lim_{x \to 0} \frac{ \sin^2 (20x)}{\sin^2 (10x)}  \cdot \lim_{x \to 0}  \frac{1 - \sin^2 (10x)}{1 - \sin^2 (20x)}
+\end{equation}
+
+Calculemos primeiro \(\lim_{x \to 0} \frac{ \sin^2 (20x)}{\sin^2 (10x)}\)
+
+\begin{align*}
+    \lim_{x \to 0} \frac{ \sin^2 (20x)}{\sin^2 (10x)}
+     & = \lim_{x \to 0} \left( \frac{ \sin (20x)}{\sin (10x)} \right)^2                                            \\
+     & =  \left( \lim_{x \to 0} \frac{ \sin (20x)}{\sin (10x)} \right)^2                                           \\
+     & = \left(\lim_{x \to 0} \frac{ \frac{\sin (20x)}{x}}{\frac{\sin (10x)}{x}}\right)^2                          \\
+     & = \left( \frac{\lim_{x \to 0} \frac{\sin (20x)}{x}}{\lim_{x \to 0} \frac{\sin (10x)}{x}}\right)^2           \\
+     & = \left( \frac{\lim_{x \to 0} 20 \frac{\sin (20x)}{20x}}{\lim_{x \to 0} 10 \frac{\sin (10x)}{10x}}\right)^2 \\
+\end{align*}
+
+Façamos \(20x = t\) e \(10x = u\). Perceba que se \(20x = 0 \implies t = 0 \),
+e que se \(10x = 0 \implies u = 0 \).
+
+\begin{align*}
+    \lim_{x \to 0} \frac{ \sin^2 (20x)}{\sin^2 (10x)}
+     & = \left( \frac{\lim_{x \to 0} 20 \frac{\sin (20x)}{20x}}{\lim_{x \to 0} 10 \frac{\sin (10x)}{10x}}\right)^2 \\
+     & = \left( \frac{\lim_{x \to 0} 20 \frac{\sin (t)}{t}}{\lim_{x \to 0} 10 \frac{\sin (u)}{u}}\right)^2         \\
+     & = \left( \frac{\lim_{x \to 0} 20 \cdot 1}{\lim_{x \to 0} 10 \cdot 1}\right)^2                               \\
+     & = \left( \frac{\lim_{x \to 0} 20 }{\lim_{x \to 0} 10 }\right)^2                                             \\
+     & = \left( \frac{ 20 }{ 10 }\right)^2                                                                         \\
+     & =  2^2                                                                                                      \\
+     & =  4                                                                                                        \\
+\end{align*}
+
+Ou seja:
+
+\begin{equation} \label{question_3_first_factor}
+    \lim_{x \to 0} \frac{ \sin^2 (20x)}{\sin^2 (10x)} =  4
+\end{equation}
+
+Agora, calculemos \(\lim_{x \to 0}  \frac{1 - \sin^2 (10x)}{1 - \sin^2 (20x)}\)
+
+\begin{align*}
+    \lim_{x \to 0}  \frac{1 - \sin^2 (10x)}{1 - \sin^2 (20x)}
+     & =  \lim_{x \to 0}  \frac{1 - \sin^2 (10 \cdot 0)}{1 - \sin^2 (20 \cdot 0)} \\
+     & =  \lim_{x \to 0}  \frac{1 - \sin^2 0}{1 - \sin^2 0}                       \\
+     & =  \lim_{x \to 0}  \frac{1 - (\sin 0)^2}{1 - (\sin 0)^2}                   \\
+     & =  \lim_{x \to 0}  \frac{1 - 0^2}{1 - 0^2}                                 \\
+     & =  \lim_{x \to 0}  \frac{1 - 0}{1 - 0}                                     \\
+     & =  \lim_{x \to 0}  \frac{1}{1}                                             \\
+     & =  \lim_{x \to 0}  1                                                       \\
+     & =  1                                                                       \\
+\end{align*}
+
+Ou seja:
+
+\begin{equation} \label{question_3_second_factor}
+    \lim_{x \to 0}  \frac{1 - \sin^2 (10x)}{1 - \sin^2 (20x)} =  1
+\end{equation}
+
+Partindo das expressões \ref{question_3_minus_product_limit}
+, \ref{question_3_product_limit}
+, \ref{question_3_first_factor}
+e \ref{question_3_second_factor}, temos o seguinte:
+
+\begin{align*}
+    \lim_{x \to 0} \frac{1 - \sec^2(20x) }{\sec^2(10x) - 1}
+     & = - \lim_{x \to 0} \frac{ \sin^2 (20x)}{\sin^2 (10x)}  \cdot \lim_{x \to 0}  \frac{1 - \sin^2 (10x)}{1 - \sin^2 (20x)} \\
+     & = - 4  \cdot 1                                                                                                         \\
+     & = - 4                                                                                                                  \\
+\end{align*}
+
+Ou seja:
+
+\begin{equation} \label{question_3_partial_result}
+    \lim_{x \to 0} \frac{1 - \sec^2(20x) }{\sec^2(10x) - 1} = -4
+\end{equation}
+
+De \ref{question_3_expression} e \ref{question_3_partial_result}, temos:
+
+\[
+    \lim_{x \to 0} 3^{\frac{1 - \sec^2(20x) }{\sec^2(10x) - 1}}
+    = 3^{\lim_{x \to 0} \frac{1 - \sec^2(20x) }{\sec^2(10x) - 1} }
+        = 3^{-4}
+    = \frac{1}{81}
+\]
+
+Finalmente:
+
+\[
+    \lim_{x \to 0} 3^{\frac{1 - \sec^2(20x) }{\sec^2(10x) - 1}} = \frac{1}{81}
+\]
+
+
+
+
+\subsubsection*{4.}
+
+\[
+    \lim_{x \to +\infty}\left(\ln\left(1 + \frac{3}{5x}\right)^{2x}\right)
+\]
+
+\begin{align*}
+    \lim_{x \to +\infty}\left(\ln\left(1 + \frac{3}{5x}\right)^{2x}\right)
+     & = \ln \left(\lim_{x \to +\infty}\left(1 + \frac{3}{5x}\right)^{2x}\right) \\
+\end{align*}
+
+Façamos \(\frac{3}{5x} = \frac{1}{t}\). Perceba que
+
+\[
+    \frac{3}{5x} = \frac{1}{t} \implies  5x = 3t \implies x = \frac{3t}{5}
+\]
+
+Perceba também que \(x \to +\infty \implies t \to +\infty\).
+
+\begin{align*}
+    \lim_{x \to +\infty}\left(\ln\left(1 + \frac{3}{5x}\right)^{2x}\right)
+     & = \ln \left(\lim_{x \to +\infty}\left(1 + \frac{3}{5x}\right)^{2x}\right)                         \\
+     & = \ln \left(\lim_{t \to +\infty}\left(1 + \frac{1}{t}\right)^{2\cdot\frac{3t}{5}}\right)          \\
+     & = \ln \left(\lim_{t \to +\infty}\left(1 + \frac{1}{t}\right)^{\frac{6t}{5}}\right)                \\
+     & = \ln \left(\lim_{t \to +\infty}\left(\left(1 + \frac{1}{t}\right)^t\right)^{\frac{6}{5}}\right)  \\
+     & = \ln \left(\left(\lim_{t \to +\infty} \left(1 + \frac{1}{t}\right)^t\right)^{\frac{6}{5}}\right) \\
+\end{align*}
+
+Ou seja:
+
+\begin{equation} \label{question_4_expression_1}
+    \lim_{x \to +\infty}\left(\ln\left(1 + \frac{3}{5x}\right)^{2x}\right)
+    = \ln \left(\left(\lim_{t \to +\infty} \left(1 + \frac{1}{t}\right)^t\right)^{\frac{6}{5}}\right) \\
+\end{equation}
+
+
+Lembremos que podemos obter o número neperiano \(e\) através do seguinte limite:
+
+\begin{equation} \label{question_4_neperian_e}
+    e = \lim_{x \to +\infty} \left(1 + \frac{1}{x}\right)^x
+\end{equation}
+
+Das expressões \ref{question_4_expression_1} e \ref{question_4_neperian_e}, temos:
+
+\begin{align*}
+    \lim_{x \to +\infty}\left(\ln\left(1 + \frac{3}{5x}\right)^{2x}\right)
+     & = \ln \left(\left(\lim_{t \to +\infty} \left(1 + \frac{1}{t}\right)^t\right)^{\frac{6}{5}}\right) \\
+     & = \ln (e^{\frac{6}{5}})                                                                           \\
+     & = \ln e^{\frac{6}{5}}                                                                             \\
+     & = \frac{6}{5} \cdot \ln e                                                                         \\
+     & = \frac{6}{5} \cdot 1                                                                             \\
+     & = \frac{6}{5}                                                                                     \\
+\end{align*}
+
+Finalmente:
+
+\begin{equation*}
+    \lim_{x \to +\infty}\left(\ln\left(1 + \frac{3}{5x}\right)^{2x}\right)
+    = \frac{6}{5}
+\end{equation*}
+
+
+\subsubsection*{5.}
+
+\[
+    \lim_{x \to 0} \frac{2^x - 6^x}{10^x - 20^x}
+\]
+
+\begin{align*}
+    \lim_{x \to 0} \frac{2^x - 6^x}{10^x - 20^x}
+     & = \lim_{x \to 0} \frac{ \frac{2^x - 6^x}{x} }{ \frac{10^x - 20^x}{x} }                                                                                           \\
+     & =  \frac{ \lim_{x \to 0} \frac{2^x - 6^x}{x} }{\lim_{x \to 0} \frac{10^x - 20^x}{x} }                                                                            \\
+     & =  \frac{ \lim_{x \to 0} \frac{2^x -1 - 6^x + 1}{x} }{\lim_{x \to 0} \frac{10^x -1 - 20^x +1}{x} }                                                               \\
+     & =  \frac{ \lim_{x \to 0} \frac{(2^x -1) - (6^x - 1)}{x} }{\lim_{x \to 0} \frac{(10^x -1) - (20^x - 1)}{x} }                                                      \\
+     & =  \frac{ \lim_{x \to 0} \left( \frac{(2^x -1)}{x} - \frac{(6^x - 1)}{x}\right) }{\lim_{x \to 0} \left(\frac{(10^x -1)}{x} - \frac{(20^x - 1)}{x}\right) }       \\
+     & =  \frac{  \lim_{x \to 0} \frac{(2^x -1)}{x} -  \lim_{x \to 0} \frac{(6^x - 1)}{x} }{ \lim_{x \to 0} \frac{(10^x -1)}{x} - \lim_{x \to 0} \frac{(20^x - 1)}{x} } \\
+\end{align*}
+
+Ou seja:
+
+\begin{equation} \label{question_5_expression_1}
+    \lim_{x \to 0} \frac{2^x - 6^x}{10^x - 20^x}
+    = \frac{  \lim_{x \to 0} \frac{(2^x -1)}{x} -  \lim_{x \to 0} \frac{(6^x - 1)}{x} }{ \lim_{x \to 0} \frac{(10^x -1)}{x} - \lim_{x \to 0} \frac{(20^x - 1)}{x} }
+\end{equation}
+
+Lembremos do seguinte limite especial:
+
+\begin{equation} \label{question_5_special_limit}
+    \lim_{x \to 0} \frac{a^x-1}{x} = \ln a
+\end{equation}
+
+Das expressões \ref{question_5_expression_1} e \ref{question_5_special_limit}, temos:
+
+\begin{align*}
+    \lim_{x \to 0} \frac{2^x - 6^x}{10^x - 20^x}
+     & = \frac{  \lim_{x \to 0} \frac{(2^x -1)}{x} -  \lim_{x \to 0} \frac{(6^x - 1)}{x} }{ \lim_{x \to 0} \frac{(10^x -1)}{x} - \lim_{x \to 0} \frac{(20^x - 1)}{x} } \\
+     & = \frac{  \ln 2 -  \ln 6 }{ \ln 10 - \ln 20 }                                                                                                                   \\
+     & = \frac{  \ln \frac{2}{6} }{ \ln \frac{10}{20} }                                                                                                                \\
+     & = \frac{  \ln \frac{1}{3} }{ \ln \frac{1}{2} }                                                                                                                  \\
+     & = \log_{\frac{1}{2}} \frac{1}{3}                                                                                                                                \\
+\end{align*}
+
+
+
+
+\subsubsection*{6. Analise a continuidade de}
+
+\begin{equation}
+    f(x) =
+    \left\{
+    \begin{array}{ll}
+        x + x^2  & \mbox{se } x < 1     \\
+        3x^4 - 1 & \mbox{se } x \geq  1
+    \end{array}
+    \right.
+\end{equation}
+
+Sejam:
+
+\[
+    g(x) = x + x^2
+\]
+
+\[
+    h(x) = 3x^4 - 1
+\]
+
+Primeiro de tudo, vamos nos lembrar da seguinte propriedade da continuidade das funções:
+\textbf{toda função polinomial é contínua.}
+
+Pela propriedade, temos que:
+
+\begin{itemize}
+    \item \(g\) é contínua, pois é uma função polinomial.
+    \item \(h\) é contínua, pois é uma função polinomial.
+    \item \(f(x) =
+          \left\{
+          \begin{array}{ll}
+              g(x) & \mbox{se } x < 1     \\
+              h(x) & \mbox{se } x \geq  1
+          \end{array}
+          \right.\)
+\end{itemize}
+
+Com isso, sabemos que \(f\) é contínua em \(x < 1\) e em \(x > 1\).
+
+Para concluirmos a análise da continuidade de \(f\), analisemos se
+
+\[
+    f(x) =
+    \left\{
+    \begin{array}{ll}
+        x + x^2  & \mbox{se } x < 1     \\
+        3x^4 - 1 & \mbox{se } x \geq  1
+    \end{array}
+    \right. \text{ é contínua em } x = 1
+\]
+
+\(f\) é contínua no ponto \(x_0 = 1\), se, e somente se:
+
+
+\[\text{I. } f(x_0) \text{ for definido }\]
+\[\text{II. } \lim_{x \to x_0} f(x) \text{ existir }\]
+\[\text{III. } \lim_{x \to x_0} f(x) = f(x_0)\]
+
+
+Vamos verificar essas condições.
+
+
+\[\text{I. } f(x_0) \text{ for definido }\]
+
+
+
+\[
+    f(x_0) = f(1) = 3 \cdot (1)^4 - 1 = 3 \cdot 1 - 1 = 3 - 1 = 2
+\]
+
+\[
+    f(x_0) = f(1)  = 2
+\]
+
+Verifica-se que a primeira condição é verdadeira, pois \(f(x_0) = 2\) é definido.
+
+\[
+    \text{II. }
+    \lim_{x \to x_0} f(x) \text{ existir }
+\]
+
+
+
+Para \(\lim_{x \to x_0} f(x)\) existir, os limites laterais devem ser iguais.
+Vamos verificar se esse é o caso.
+
+\[
+    \lim_{x \to 1^-} f(x)
+    = \lim_{x \to 1^-} (x + x^2)
+    = \lim_{x \to 1^-} (1 + 1^2)
+    = \lim_{x \to 1^-} (2)
+    = 2
+\]
+
+\[
+    \lim_{x \to 1^+} f(x)
+    = \lim_{x \to 1^+} 3x^4 - 1
+    = \lim_{x \to 1^+} 3(1)^4 - 1
+    = \lim_{x \to 1^+} 3 - 1
+    = \lim_{x \to 1^+} 2
+\]
+
+Ou seja:
+
+\[
+    \lim_{x \to 1^-} f(x) = \lim_{x \to 1^+} f(x) = 2
+\]
+
+Portanto, \(\lim_{x \to x_0} f(x)\) existe, pois os limites laterais são iguais.
+
+
+\[
+    \text{III. } \lim_{x \to x_0} f(x) = f(x_0)
+\]
+
+
+Do item II. sabemos que
+
+\[
+    \lim_{x \to x_0} f(x) = 2
+\]
+
+Do item I. sabemos que
+
+\[
+    f(x_0)  = 2
+\]
+
+Portanto, temos que:
+
+\[
+    \lim_{x \to x_0} f(x) = f(x_0) = 2
+\]
+
+Sendo assim, a terceira condição é verdadeira.
+
+Com as 3 condições sendo verdadeira, concluímos \(f\) é contínua no ponto \(x = 1\).
+
+Acrescentando isso à análise dos pontos que não são \(x = 1\),
+concluímos que \textbf{\(f\) é contínua em todos os seus pontos}.
+
+\end{document}
