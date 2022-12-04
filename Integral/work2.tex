@@ -1,0 +1,453 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{cancel}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage{float}
+
+\title{Segundo Trabalho de Cálculo II}
+\author{Vinícius Menezes Monte}
+\date{Dezembro de 2022}
+
+\begin{document}
+
+\maketitle
+
+\section*{Questões}
+
+\subsection*{
+I. Se \(f:[a,b]\longrightarrow \mathbb{R} \) possui derivada integrável,
+ponha \(m = \dfrac{a+b}{2}\) e prove que:
+}
+\[
+    f(a) + f(b) =
+    \dfrac{2}{b-a} \int_a^b [f(x) + (x-m) \cdot f'(x)] \, dx
+\]
+
+\subsection*{II. Sejam \(m\) e \(n\) números naturais diferentes de zero. Verifique que:}
+\[
+    \int_0^1 x^n \cdot (1-x)^m \, dx =
+    \dfrac{m}{n+1} \cdot \int_0^1 x^{n+1} \cdot (1-x)^{m-1} \, dx
+\]
+
+\subsection*{III. Verifique que, \( \forall n \in \mathbb{N}\) e \(s > 0\), vale:}
+\[
+    \int t^n \cdot e^{-st} \, dt
+    =
+    -\dfrac{1}{s} \cdot t^n \cdot e^{-st}
+    + \dfrac{n}{s} \cdot \int t^{n-1} \cdot e^{-st} \, dt
+    + k
+\]
+
+\subsection*{IV. Seja \(n \ge 2\), mostre que:}
+
+\[
+    (a) \quad \int \sin^nx \, dx
+    = -\dfrac{1}{n} \cdot \sin^{n-1}(x) \cdot \cos(x)
+    + \dfrac{n-1}{n} \int \sin^{n-2}(x) \, dx
+\]
+
+\[
+    (b) \quad \int \cos^nx \, dx
+    = \dfrac{1}{n} \cdot \cos^{n-1}(x) \cdot \sin(x)
+    + \dfrac{n-1}{n} \int \cos^{n-2}(x) \, dx
+\]
+
+\subsection*{V. Mostre que \(\tanh^{-1}(x) = \dfrac{1}{2}\ln\left(\dfrac{1+x}{1-x} \right) \)}
+
+\pagebreak
+
+\section*{Soluções}
+
+\subsection*{
+I. Se \(f:[a,b]\longrightarrow \mathbb{R} \) possui derivada integrável,
+ponha \(m = \dfrac{a+b}{2}\) e prove que:
+}
+\[
+    f(a) + f(b) =
+    \dfrac{2}{b-a} \int_a^b [f(x) + (x-m) \cdot f'(x)] \, dx
+\]
+
+O operador \(\int_a^b\) é linear, então:
+
+\begin{align*}
+    \int_a^b [f(x) + (x-m) \cdot f'(x)] \, dx
+     & = \int_a^b [f(x) + x \cdot f'(x) -m \cdot f'(x)] \, dx                        \\
+     & = \int_a^b f(x) \, dx + \int_a^b x \cdot f'(x) \, dx - m \int_a^b f'(x) \, dx \\
+\end{align*}
+
+Pelo Teorema Fundamental do Cálculo, temos:
+
+\begin{equation*}
+    \int_a^b f'(x) \, dx = f(b) - f(a)
+\end{equation*}
+
+Portanto:
+
+\begin{align}\label{eq:1}
+    \int_a^b [f(x) + (x-m) \cdot f'(x)] \, dx
+     & = \int_a^b f(x) \, dx + \int_a^b x \cdot f'(x) \, dx - m (f(b) - f(a))
+\end{align}
+
+Aplicando Integração por Partes, temos:
+
+\[
+    \int x \cdot f'(x) \, dx.
+\]
+
+Faça \(u = x\).
+
+\[
+    \dfrac{du}{dx} = \dfrac{dx}{dx} \Rightarrow  du = dx.
+\]
+
+E ainda
+
+\[
+    dv = f'(x) dx \Rightarrow \int dv = \int f'(x) dx
+    \Rightarrow v = f(x)
+\]
+
+Portanto
+
+\[
+    \int x \cdot f'(x) \, dx = \int udv = uv - \int vdu = x \cdot f(x) - \int f(x) dx
+\]
+
+Pelo Teorema Fundamental do Cálculo, temos:
+
+\[
+    \int_a^b x \cdot f'(x) \, dx = b \cdot f(b) - a \cdot f(a) - \int_a^b f(x) \, dx
+\]
+
+Voltando para a equação \eqref{eq:1}, temos:
+
+\begin{align*}
+    \int_a^b [f(x) + (x-m) \cdot f'(x)] \, dx
+     & =
+    \cancel{\int_a^b f(x) \, dx} + b \cdot f(b) - a \cdot f(a) \cancel{- \int_a^b f(x) \, dx}  - m (f(b) - f(a))
+    \\
+     & = b \cdot f(b) - a \cdot f(a) - \left(\dfrac{a+b}{2}\right) (f(b) - f(a))
+    \\
+     & = \dfrac{2bf(b)-2af(a)-af(b)+af(a)-bf(b)+bf(a)}{2}
+    \\
+     & = \dfrac{(b-a)}{2} \left(f(b) + f(a)\right)
+\end{align*}
+
+Ou seja:
+
+\[
+    f(b) + f(a) = \dfrac{2}{b-a} \int_a^b [f(x) + (x-m) \cdot f'(x)] \, dx
+\]
+
+\subsection*{II. Sejam \(m\) e \(n\) números naturais diferentes de zero. Verifique que:}
+
+\[
+    \int_0^1 x^n \cdot (1-x)^m \, dx =
+    \dfrac{m}{n+1} \cdot \int_0^1 x^{n+1} \cdot (1-x)^{m-1} \, dx
+\]
+
+Façamos Integração por Partes:
+
+\[
+    u = (1-x)^m \Rightarrow \dfrac{du}{dx}
+    = \dfrac{d(1-x)^m}{dx}
+    = m(1-x)^{m-1} \cdot (-1) = -m(1-x)^{m-1}
+\]
+
+\[
+    du = -m(1-x)^{m-1} \, dx
+\]
+
+\[
+    dv = x^n \, dx \Rightarrow \int dv = \int x^n \, dx = \dfrac{x^{n+1}}{n+1}
+\]
+
+\[
+    v = \dfrac{x^{n+1}}{n+1}
+\]
+
+\begin{align*}
+    \int udv = uv - \int vdu
+     & = (1-x)^m \cdot \dfrac{x^{n+1}}{n+1} - \int \dfrac{x^{n+1}}{n+1} \cdot (-m(1-x)^{m-1}) \, dx \\
+     & = (1-x)^m \cdot \dfrac{x^{n+1}}{n+1} + \dfrac{m}{n+1} \int x^{n+1} \cdot (1-x)^{m-1} \, dx   \\
+\end{align*}
+
+Pelo Teorema Fundamental do Cálculo, temos:
+
+\begin{align*}
+    \int_0^1 x^n \cdot (1-x)^m \, dx
+     & = (1-1)^m \cdot \dfrac{1^{n+1}}{n+1} - (1-0)^m \cdot \dfrac{0^{n+1}}{n+1}
+    + \dfrac{m}{n+1} \int_0^1 x^{n+1} \cdot (1-x)^{m-1} \, dx                    \\
+     & = 0 - 0 + \dfrac{m}{n+1} \int_0^1 x^{n+1} \cdot (1-x)^{m-1} \, dx
+    \\
+     & = \dfrac{m}{n+1} \int_0^1 x^{n+1} \cdot (1-x)^{m-1} \, dx
+\end{align*}
+
+Finalmente:
+
+\begin{equation*}
+    \int_0^1 x^n \cdot (1-x)^m \, dx = \dfrac{m}{n+1} \int_0^1 x^{n+1} \cdot (1-x)^{m-1} \, dx
+\end{equation*}
+
+\subsection*{III. Verifique que, \( \forall n \in \mathbb{N}\) e \(s > 0\), vale:}
+\[
+    \int t^n \cdot e^{-st} \, dt
+    =
+    -\dfrac{1}{s} \cdot t^n \cdot e^{-st}
+    + \dfrac{n}{s} \cdot \int t^{n-1} \cdot e^{-st} \, dt
+    + k
+\]
+
+Façamos integração por partes.
+
+Faça
+\[
+    u = t^n \Rightarrow \dfrac{du}{dt} = n \cdot t^{n-1} \Rightarrow du = n \cdot t^{n-1} \, dt
+\]
+
+\[
+    du = n \cdot t^{n-1} \, dt
+\]
+
+E ainda
+
+\[
+    dv = e^{-st} \, dt \Rightarrow \int dv = \int e^{-st} \, dt
+\]
+
+\[
+    v =   \int e^{-st} \, dt
+\].
+
+Faça
+
+\[
+    w = -st \Rightarrow \dfrac{dw}{dt} = -\dfrac{st}{dt} \Rightarrow dw = -s \, dt
+    \Rightarrow dt = -\dfrac{1}{s} dw
+\]
+
+\[
+    \int e^{w} (-\dfrac{1}{s})dw
+    = -\dfrac{1}{s} \int e^{w} dw
+    = -\dfrac{1}{s} \cdot e^{w}
+    = -\dfrac{1}{s} \cdot e^{-st}
+\]
+
+Portanto
+
+\[
+    v = - \dfrac{1}{s} \cdot e^{-st}
+\]
+
+Prossigamos com a integração por partes:
+
+\[
+    \int udv = uv - \int vdu \rightarrow \int t^n \cdot e^{-st} \, dt
+    = - \dfrac{t^n \cdot e^{-st}}{s} - \int - \dfrac{1}{s} \cdot e^{-st} \cdot n \cdot t^{n-1} \, dt
+\]
+
+Finalmente:
+
+\[
+    \int t^n \cdot e^{-st} \, dt
+    = - \dfrac{1}{s} \cdot t^n \cdot e^{-st} + \dfrac{n}{s} \int  t^{n-1} e^{-st}  \, dt
+    + k
+\]
+
+\subsection*{IV. Seja \(n \ge 2\), mostre que:}
+
+\[
+    (a) \quad \int \sin^nx \, dx
+    = -\dfrac{1}{n} \cdot \sin^{n-1}(x) \cdot \cos(x)
+    + \dfrac{n-1}{n} \int \sin^{n-2}(x) \, dx
+\]
+
+\[
+    \sin^n(x)dx = \sin^{n-1} \sin(x) (x)dx
+\]
+
+Faça
+
+\[
+    u = \sin^{n-1}(x) => \dfrac{du}{dx} = \dfrac{\sin^{n-1}(x)}{dx}
+    = (n-1) (\sin^{n-2}(x)) \cos(x)
+\]
+
+\[
+    du = (n-1) (\sin^{n-2}(x)) \cos(x) \, dx
+\]
+
+E ainda
+
+\[
+    dv = \sin(x) \, dx \Rightarrow \int dv = \int \sin(x) \, dx
+\]
+
+\[
+    v = - \cos(x)
+\]
+
+\[
+    \int udv = uv - \int vdu
+\]
+
+\begin{align*}
+    \int \sin^{n-1}(x) \sin(x) \, dx
+     & =
+    - \cos(x) \sin^{n-1}(x) - \int - \cos(x) (n-1) (\sin^{n-2}(x)) \cos(x) \, dx
+    \\
+     & =
+    - \cos(x) \sin^{n-1}(x) + \int (n-1) (\sin^{n-2}(x)) \cos(x) \cos(x) \, dx
+    \\
+     & =
+    - \cos(x) \sin^{n-1}(x) + (n-1) \int (\sin^{n-2}(x)) \cos^2(x) \, dx
+    \\
+     & =
+    - \cos(x) \sin^{n-1}(x) + (n-1) \int (\sin^{n-2}(x))(1 - sin^2(x)) \, dx
+    \\
+     & =- \cos(x) \sin^{n-1}(x)
+    + (n-1) \int sin^{n-2}(x) \, dx
+    - (n-1) \int sin^n(x) \, dx
+\end{align*}
+
+Ou seja:
+
+\[
+    \int \sin^{n-1}(x) \sin(x) \, dx + (n-1) \int sin^n(x) \, dx
+    =
+    - \cos(x) \sin^{n-1}(x)
+    + (n-1) \int sin^{n-2}(x) \, dx
+\]
+
+\[
+    n \int \sin^n(x) \, dx
+    =
+    - \cos(x) \sin^{n-1}(x)
+    + (n-1) \int sin^{n-2}(x) \, dx
+\]
+
+Finalmente temos:
+
+\[
+    \int \sin^n(x) \, dx = - \dfrac{1}{n} \sin^{n-1}(x) \cos(x) + \dfrac{n-1}{n} \int \sin^{n-2}(x) \, dx
+\]
+
+\begin{center}
+    $\spadesuit$~$\spadesuit$~$\spadesuit$
+\end{center}
+
+\[
+    (b) \quad \int \cos^nx \, dx
+    = \dfrac{1}{n} \cdot \cos^{n-1}(x) \cdot \sin(x)
+    + \dfrac{n-1}{n} \int \cos^{n-2}(x) \, dx
+\]
+
+\[
+    \cos^n(x)dx = \cos^{n-1} \cos(x) (x)dx
+\]
+
+Faça
+
+\[
+    u = \cos^{n-1}(x) => \dfrac{du}{dx} = \dfrac{\cos^{n-1}(x)}{dx}
+    = -(n-1) (\cos^{n-2}(x)) \sin(x)
+\]
+
+\[
+    du =   -(n-1) (\cos^{n-2}(x)) \sin(x) dx
+\]
+
+E ainda
+
+\[
+    dv = \cos(x) \, dx \Rightarrow \int dv = \int \cos(x) \, dx
+\]
+
+\[
+    v = \sin(x)
+\]
+
+Então:
+
+\[
+    \int udv = uv - \int vdu
+\]
+
+\begin{align*}
+    \int \cos^n(x) \, dx
+     & =
+    \sin(x) \cos^{n-1}(x) - \int \sin(x) (-(n-1)\cos^{n-2}(x)\sin(x)) \, dx
+    \\
+     & =
+    \sin(x) \cos^{n-1}(x) + \int (n-1)\cos^{n-2}(x)\sin^2(x)  \, dx
+    \\
+     & =
+    \sin(x) \cos^{n-1}(x) + (n-1) \int \cos^{n-2}(x) (1 - \cos^2(x)) \, dx
+    \\
+     & =
+    \sin(x) \cos^{n-1}(x)
+    + (n-1) \int \cos^{n-2}(x) \, dx
+    - (n-1) \int \cos^n(x) \, dx
+\end{align*}
+
+Ou seja:
+
+\[
+    \int \cos^n(x) \, dx + (n-1) \int \cos^n(x) \, dx
+    =
+    \sin(x) \cos^{n-1}(x)
+    + (n-1) \int \cos^{n-2}(x) \, dx
+\]
+
+\[
+    n \int \cos^n(x) \, dx
+    =
+    \sin(x) \cos^{n-1}(x)
+    + (n-1) \int \cos^{n-2}(x) \, dx
+\]
+
+Finalmente:
+
+\[
+    \int \cos^n(x) \, dx
+    = \dfrac{1}{n} \cos^{n-1}(x) \sin(x) + \dfrac{n-1}{n} \int \cos^{n-2}(x) \, dx
+\]
+
+\subsection*{V. Mostre que \(\tanh^{-1}(x) = \dfrac{1}{2}\ln\left(\dfrac{1+x}{1-x} \right) \)}
+
+\[
+    y = \tanh^{-1}(x)
+    \Rightarrow \tanh(y) = x
+    \Rightarrow \dfrac{\sinh(y)}{\cosh(y)} = x
+    \Rightarrow \dfrac{\dfrac{e^y-e^{-y}}{2}}{\dfrac{e^y+e^{-y}}{2}} = x
+    \Rightarrow
+\]
+
+\[
+    \Rightarrow x = \dfrac{e^y-e^{-y}}{e^y+e^{-y}}
+    \Rightarrow \dfrac{e^y-\dfrac{1}{e^y}}{e^y+\dfrac{1}{e^y}} = x
+    \Rightarrow \dfrac{\dfrac{e^{2y}-1}{e^y}}{\dfrac{e^{2y}+1}{e^y}} = x
+    \Rightarrow \dfrac{e^{2y}-1}{e^{2y}+1} = x
+    \Rightarrow
+\]
+
+\[
+    \Rightarrow x \cdot e^{2y} + x = e^{2y} - 1
+    \Rightarrow x \cdot e^{2y} - e^{2y} = -x - 1
+    \Rightarrow e^{2y} - x \cdot e^{2y} = x + 1
+    \Rightarrow
+\]
+
+\[
+    \Rightarrow e^{2y} = \dfrac{x+1}{1-x}
+    \Rightarrow \ln(e^{2y}) = \ln\left(\dfrac{x+1}{1-x} \right)
+    \Rightarrow 2y = \ln\left(\dfrac{x+1}{1-x} \right)
+    \Rightarrow y = \dfrac{1}{2} \ln\left(\dfrac{x+1}{1-x} \right)
+\]
+
+com \(|x|<1\)
+
+\end{document}
